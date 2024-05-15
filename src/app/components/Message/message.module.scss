@@ -1,0 +1,36 @@
+.message {
+  display: flex;
+  .messageInfo {
+    display: flex;
+    flex-direction: column;
+    span {
+      opacity: 50%;
+    }
+    img {
+      width: 15%;
+    }
+  }
+  .messageContent {
+    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    p {
+      border-radius: 0 10px 10px 10px;
+      max-width: max-content;
+    }
+    img {
+      width: 40%;
+    }
+  }
+  &.owner {
+    flex-direction: row-reverse;
+    .messageContent {
+      align-items: flex-end;
+      p {
+        background-color: black;
+        color: white;
+        border-radius: 10px 0px 10px 10px;
+      }
+    }
+  }
+}

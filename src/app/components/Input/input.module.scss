@@ -1,0 +1,21 @@
+.input {
+  border-top: 1px solid black;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  input {
+    width: 100%;
+  }
+  .send {
+    display: flex;
+    align-items: center;
+    label {
+      cursor: pointer;
+    }
+    input {
+      display: none;
+      cursor: pointer;
+    }
+  }
+}
