@@ -1,8 +1,8 @@
 import Chat from "../Chat/Chat";
 import SideBar from "../SideBar/SideBar";
-import styles from "./messenger.module.scss";
+import styles from "./messages.module.scss";
 
-const Messenger = () => {
+const Messages = () => {
   return (
     <div className={styles.messengerContainer}>
       <SideBar />
@@ -11,4 +11,4 @@ const Messenger = () => {
   );
 };
 
-export default Messenger;
+export default Messages;

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import Router from "next/router";
 import styles from "./register.module.scss";
 import { auth, storage, db } from "../../api/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
@@ -26,7 +27,6 @@ const Register = () => {
       await uploadBytesResumable(storageRef, file).then(() => {
         getDownloadURL(storageRef).then(async (downloadURL) => {
           try {
-            
             await updateProfile(res.user, {
               displayName,
               photoURL: downloadURL,
@@ -40,6 +40,7 @@ const Register = () => {
             });
 
             await setDoc(doc(db, "userChats", res.user.uid), {});
+            Router.push('/messages');
           } catch (err) {
             console.log(err);
             setErr(true);
@@ -77,4 +78,3 @@ const Register = () => {
 };
 
 export default Register;
-

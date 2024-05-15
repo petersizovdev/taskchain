@@ -1,12 +1,12 @@
-import Register from '@/app/components/Register/Register';
+import Register from "@/app/components/Register/Register";
 import styles from "./page.module.scss";
-import Login from '@/app/components/Login/Register';
+import Login from "@/app/components/Login/Login";
 
 const Auth = () => {
   return (
     <div className={styles.formContainer}>
-        <Register/>
-        <Login/>
+      <Register />
+      <Login />
     </div>
   );
 };
