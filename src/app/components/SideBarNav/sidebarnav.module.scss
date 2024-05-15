@@ -1,0 +1,10 @@
+.sideBarNav {
+  display: flex;
+  height: max-content;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom:1px solid black ;
+  .navUser {
+    display: flex;
+  }
+}

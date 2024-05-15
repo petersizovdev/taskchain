@@ -1,0 +1,14 @@
+.search {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+
+  .searchForm {
+  }
+  .user {
+    display: flex;
+
+    border-bottom: 1px solid black;
+  }
+}
