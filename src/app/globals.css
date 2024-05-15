@@ -1,3 +1,7 @@
+:root {
+  --dark: #3f3f3f;
+}
+
 * {
   margin: 0;
   padding: 0;
