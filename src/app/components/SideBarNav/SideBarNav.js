@@ -13,7 +13,7 @@ const SideBarNav = () => {
 
   return (
     <div className={styles.sideBarNav}>
-      <Image src="" alt="." />
+      <img src={currentUser.photoURL} alt="." width={16}/>
       <div className={styles.navUser}>
         <h4>{currentUser.displayName}</h4>
         <button onClick={() => signOut(auth)}>Выйти</button>
