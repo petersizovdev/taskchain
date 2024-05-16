@@ -1,10 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import styles from "./sidebarnav.module.scss";
 import React, { useContext } from "react";
 import { signOut } from "firebase/auth";
-
 import { AuthContext } from "../../context/AuthContext";
 import { auth } from "@/app/api/firebase";
 

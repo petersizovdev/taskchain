@@ -1,11 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import styles from "./page.module.scss";
-import React, { useContext, useState } from "react";
+import React, {  useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../api/firebase";
-import { AuthContext } from "../../context/AuthContext";
+
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -20,7 +19,7 @@ const Login = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      router.push("/");
+      router.push("/messenger");
     } catch (err) {
       setErr(true);
     }
