@@ -1,12 +1,11 @@
 "use client";
-
+import { createContext, useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../api/firebase";
-import { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
 
-export const AuthContextProvider = ({ childern }) => {
+export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
@@ -14,6 +13,7 @@ export const AuthContextProvider = ({ childern }) => {
       setCurrentUser(user);
       console.log(user);
     });
+
     return () => {
       unsub();
     };
@@ -21,7 +21,7 @@ export const AuthContextProvider = ({ childern }) => {
 
   return (
     <AuthContext.Provider value={{ currentUser }}>
-      {childern}
+      {children}
     </AuthContext.Provider>
   );
 };

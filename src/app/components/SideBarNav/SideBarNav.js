@@ -1,15 +1,22 @@
+"use client";
+
 import Image from "next/image";
 import styles from "./sidebarnav.module.scss";
-import { signOut } from 'firebase/auth';
-import { auth } from '@/app/api/firebase';
+import React, { useContext } from "react";
+import { signOut } from "firebase/auth";
+
+import { AuthContext } from "../../context/AuthContext";
+import { auth } from "@/app/api/firebase";
 
 const SideBarNav = () => {
+  const { currentUser } = useContext(AuthContext);
+
   return (
     <div className={styles.sideBarNav}>
       <Image src="" alt="." />
       <div className={styles.navUser}>
-        <h4>Name</h4>
-        <button onClick={()=>signOut(auth)}>Выйти</button>
+        <h4>{currentUser.displayName}</h4>
+        <button onClick={() => signOut(auth)}>Выйти</button>
       </div>
     </div>
   );
