@@ -22,7 +22,7 @@ const Search = () => {
   const { currentUser } = useContext(AuthContext);
 
   const handleKey = (e) => {
-    e.code === "Enter" && handleSearch(); 
+    e.code === "Enter" && handleSearch();
   };
 
   const handleSearch = async () => {
@@ -40,7 +40,8 @@ const Search = () => {
     }
   };
 
-  const handleSelect = async () => {  //создать чат между двумя пользователями, если его еще не существует
+  const handleSelect = async () => {
+    //создать чат между двумя пользователями, если его еще не существует
     const combinedId =
       currentUser.uid > user.uid
         ? currentUser.uid + user.uid
@@ -51,7 +52,8 @@ const Search = () => {
       if (!res.exists()) {
         await setDoc(doc(db, "chats", combinedId), { messages: [] }); //создание перепискии в коллекции переписок
 
-        await updateDoc(doc(db, "userChats", currentUser.uid), {      //создание перепискии в коллекции пользователя
+        await updateDoc(doc(db, "userChats", currentUser.uid), {
+          //создание перепискии в коллекции пользователя
           [combinedId + ".userInfo"]: {
             uid: user.uid,
             displayName: user.displayName,
@@ -76,27 +78,25 @@ const Search = () => {
   };
 
   return (
-    <div className={styles.search}>
-      <div className={styles.searchForm}>
+    <div className="search">
+      <div className="searchForm">
         <input
           type="text"
-          placeholder="Найти пользователя"
+          placeholder="Find a user"
           onKeyDown={handleKey}
           onChange={(e) => setUsername(e.target.value)}
           value={username}
-        ></input>
+        />
       </div>
-      <div className={styles.user}>
-        {err & <p>Пользователь не найден</p>}
-        {user && (
-          <div className={styles.userChat} onClick={handleSelect}>
-            <img src={user.photoURL} alt="." width={16} />
-            <div className={styles.userInfo}>
-              <span>{user.displayName}</span>
-            </div>
+      {err && <span>Пользователь не найден</span>}
+      {user && (
+        <div className="userChat" onClick={handleSelect}>
+          <img src={user.photoURL} alt="" />
+          <div className="userChatInfo">
+            <span>{user.displayName}</span>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

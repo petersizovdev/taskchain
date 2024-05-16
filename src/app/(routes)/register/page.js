@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import Router from "next/router";
+import { useRouter } from "next/navigation";
 import styles from "./page.module.scss";
 import { auth, storage, db } from "../../api/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
@@ -12,7 +12,8 @@ import Link from 'next/link';
 const Register = () => {
   const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const router = useRouter();
+  
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
@@ -47,7 +48,7 @@ const Register = () => {
 
             //create empty user chats on firestore
             await setDoc(doc(db, "userChats", res.user.uid), {});
-            navigate("/");
+            router.push("/login");
           } catch (err) {
             console.log(err);
             setErr(true);
@@ -72,7 +73,7 @@ const Register = () => {
           <input required type="password" placeholder="password" />
           <input required style={{ display: "none" }} type="file" id="file" />
           <label htmlFor="file">
-            <Image src='' alt="" />
+            <img src='' alt="" />
             <span>Add an avatar</span>
           </label>
           <button disabled={loading}>Sign up</button>
