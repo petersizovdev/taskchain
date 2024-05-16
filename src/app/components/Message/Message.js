@@ -4,7 +4,7 @@ import { ChatContext } from "../../context/ChatContext";
 import styles from "./message.module.scss";
 import cn from "classnames";
 
-const Message = (message) => {
+const Message = ({ message }) => {
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
   const ref = useRef();
