@@ -1,15 +1,16 @@
 .input {
   border-top: 1px solid black;
-  height: 10%;
+  padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   input {
-    width: 100%;
+    width: 74%;
   }
   .send {
     display: flex;
     align-items: center;
+    gap: 1rem;
     label {
       cursor: pointer;
     }

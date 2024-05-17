@@ -1,9 +1,19 @@
 .chat {
   flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   .chatInfo {
     display: flex;
     align-items: center;
     border-bottom: 1px solid black;
     height: 5%;
+    min-height: 2rem;
+    padding: 0.5rem;
+    span {
+      color: var(--gray);
+      margin-right: 0.5rem;
+    }
   }
 }

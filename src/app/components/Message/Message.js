@@ -14,7 +14,7 @@ const Message = ({ message }) => {
   }, [message]);
 
   return (
-    <div className={cn(styles.message, styles.owner)}>
+    <div      ref={ref} className={cn(styles.message, styles.owner)}>
       <div className={styles.messageInfo}>
         <img
           src={
@@ -24,7 +24,7 @@ const Message = ({ message }) => {
           }
           alt=""
         />
-        <span>только что</span>
+    
       </div>
       <div className={styles.messageContent}>
         <p>{message.text}</p>

@@ -3,7 +3,7 @@
 :root {
   --dark: #222222;
   --black: #0c0c0c;
-  --gray: #afafaf;
+  --gray: #5A5A5A;
   --white: #e8e5e5;
   --green: #02cc6f;
   --red: #e44d4d;
@@ -82,4 +82,16 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+::-webkit-scrollbar {
+  width: 0.5rem; /* Ширина скроллбара */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Прозрачный фон */
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray); /* Серый цвет скроллбара */
+  border-radius: 5px; /* Скругленные углы */
 }
