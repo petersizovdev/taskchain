@@ -2,9 +2,16 @@
   display: flex;
   height: max-content;
   justify-content: space-between;
-  width: 100%;
-  border-bottom:1px solid black ;
+  border-bottom: 1px solid black;
+  padding: 1rem;
+  img {
+    max-width: 3rem;
+    max-height: 3rem;
+    border-radius: 50%;
+  }
   .navUser {
     display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 }

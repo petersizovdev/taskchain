@@ -1,0 +1,34 @@
+.button {
+  font-size: 1.5rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  backdrop-filter: blur(5px);
+  cursor: pointer;
+}
+
+.accent {
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.outlined {
+  background-color: var(--black);
+  color: var(--white);
+}
+.stock {
+  background-color: var(--black);
+  color: #fff;
+  transform: scale(1.05);
+  transition: all 0.1s;
+  
+}
+.stock:hover {
+  scale: 105%;
+}
+
+.outlined:hover {
+  border-color: var(--white);
+  box-shadow: 0 0 10px 5px hsla(0, 0%, 100%, 0.25);
+}

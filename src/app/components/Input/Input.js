@@ -12,6 +12,7 @@ import { db, storage } from "@/app/api/firebase";
 import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import styles from "./input.module.scss";
+import Button from '../Button/Button';
 
 const Input = () => {
   const [text, setText] = useState("");
@@ -88,7 +89,7 @@ const Input = () => {
         <label htmlFor="file">
           <img src="" alt="file" width={160} height={300} />
         </label>
-        <button onClick={handleSend}>Отправить</button>
+        <Button className={"outlined"} onClick={handleSend}>Отправить</Button>
       </div>
     </div>
   );

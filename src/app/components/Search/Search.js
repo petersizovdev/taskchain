@@ -14,6 +14,7 @@ import {
 } from "firebase/firestore";
 import { db } from "@/app/api/firebase";
 import { AuthContext } from "@/app/context/AuthContext";
+import Button from "../Button/Button";
 
 const Search = () => {
   const [username, setUsername] = useState("");
@@ -78,23 +79,25 @@ const Search = () => {
   };
 
   return (
-    <div className="search">
-      <div className="searchForm">
+    <div className={styles.search}>
+      <div className={styles.ssearchForm}>
         <input
           type="text"
-          placeholder="Find a user"
+          placeholder="Найти пользователя"
           onKeyDown={handleKey}
           onChange={(e) => setUsername(e.target.value)}
           value={username}
         />
+        <Button onClick={handleSearch} className={"outlined"}>
+          ⌕
+        </Button>
       </div>
       {err && <span>Пользователь не найден</span>}
       {user && (
-        <div className="userChat" onClick={handleSelect}>
+        <div className={styles.searchUserChat} onClick={handleSelect}>
           <img src={user.photoURL} alt="" />
-          <div className="userChatInfo">
-            <span>{user.displayName}</span>
-          </div>
+          <span>{user.displayName}</span>
+          <h4 >+</h4>
         </div>
       )}
     </div>

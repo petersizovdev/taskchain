@@ -2,13 +2,36 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 100%;
-
-  .searchForm {
+  padding: 1rem;
+  gap: 1rem;
+  .ssearchForm {
+    display: flex;
+    justify-content: space-between;
   }
   .user {
     display: flex;
-
     border-bottom: 1px solid black;
+  }
+  .searchUserChat {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--black);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    h4 {
+      margin-left: auto;
+      opacity: 0.5;
+     
+    }
+  }
+  .searchUserChat:hover {
+    background-color: rgba(0, 0, 0, 0.486);
+    cursor: pointer;
+  }
+  img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
   }
 }
