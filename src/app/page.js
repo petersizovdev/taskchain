@@ -6,6 +6,7 @@ import Link from "next/link";
 import Mockup from "@/assets/img/mockup.png";
 import Yoga from "@/assets/img/yoga.png";
 import Image from "next/image";
+import Accordion from './components/Accordion/Accordion';
 
 export default function Home() {
   return (
@@ -24,6 +25,9 @@ export default function Home() {
           </h2>
         </div>
         <Image src={Mockup}></Image>
+      </div>
+      <div className={styles.about}>
+        <Accordion/>
       </div>
     </main>
   );
