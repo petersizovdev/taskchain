@@ -1,0 +1,60 @@
+.welcome {
+  display: flex;
+  justify-content: space-between;
+  user-select: none;
+  padding-top: 4rem;
+}
+.welcomeText {
+  display: flex;
+  flex-direction: column;
+  margin: 4rem;
+  gap: 4rem;
+  z-index: 1;
+  h1 {
+    font-size: 6rem;
+  }
+}
+.cardButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2%;
+
+  font-size: 1.5rem;
+}
+.goto {
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+  margin-left: 2rem;
+  h3 {
+    font-size: 3rem;
+  }
+}
+
+.blub2 {
+  position: absolute;
+  top: 0%;
+  right: 7%;
+  scale: 1.3;
+  opacity: 0.3;
+  pointer-events: none;
+}
+.blub {
+  position: absolute;
+  top: 0%;
+  right: 5%;
+  scale: 1.2;
+  rotate: 180deg;
+  opacity: 0.35;
+  pointer-events: none;
+}
+.blub3 {
+  position: absolute;
+  top: -20.5%;
+  left: -10%;
+  scale: 1;
+  rotate: 0deg;
+  pointer-events: none;
+}
+

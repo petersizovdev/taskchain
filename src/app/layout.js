@@ -1,3 +1,4 @@
+import Header from "./components/Header/Header";
 import { AuthContextProvider } from "./context/AuthContext";
 import { ChatContextProvider } from "./context/ChatContext";
 import "./globals.css";

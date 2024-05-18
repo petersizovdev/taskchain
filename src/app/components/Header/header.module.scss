@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: var(--blackglass);
+  width: 100%;
+  position: fixed;
+  z-index: 99;
+  border-bottom: 1px solid var(--dark);
+
+  .logo {
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+    .logoMobile {
+      width: 4rem;
+      height: 4rem;
+    }
+    .logoText {
+      width: 8rem;
+      height: 4rem;
+    }
+  }
+  .nav {
+    display: flex;
+    gap: 1rem;
+    margin-right: 2rem;
+  }
+}

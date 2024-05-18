@@ -1,13 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap");
+
 :root {
-  --dark: #3f3f3f;
+  --blackglass: #0c0c0ccb;
+  --darkglass: rgba(27, 27, 27, 0.75);
+  --dark: #222222;
+  --black: #0c0c0c;
+  --gray: #5a5a5a;
+  --white: #e8e5e5;
+  --green: #02cc6f;
+  --red: #e44d4d;
 }
 
 * {
   margin: 0;
   padding: 0;
+
+  /* border: 1px solid red;*/
 }
 
 input {
   border: none;
   outline: none;
+  font-size: 1.5rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  backdrop-filter: blur(5px);
+
+  background-color: var(--black);
+  color: var(--white);
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Exo 2", sans-serif;
+  min-width: 320px;
+  background-color: var(--black);
+  color: var(--white);
+}
+
+/* Заголовки */
+h1 {
+  font-size: 2.5rem; /* 40px */
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 2rem; /* 32px */
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 1.5rem; /* 24px */
+  font-weight: 400;
+}
+
+h4 {
+  font-size: 1.25rem; /* 20px */
+  font-weight: 400;
+}
+
+h5 {
+  font-size: 1rem; /* 16px */
+  font-weight: 400;
+}
+
+h6 {
+  font-size: 0.875rem; /* 14px */
+  font-weight: 400;
+}
+
+p {
+  font-size: 1rem; /* 16px */
+  font-weight: 400;
+}
+
+span {
+  font-size: 1rem; /* 16px */
+  font-weight: 400;
+}
+
+a {
+  font-size: 1rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+::-webkit-scrollbar {
+  width: 0.5rem; /* Ширина скроллбара */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Прозрачный фон */
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray); /* Серый цвет скроллбара */
+  border-radius: 5px; /* Скругленные углы */
 }

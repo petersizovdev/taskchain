@@ -1,13 +1,18 @@
 .message {
   display: flex;
+  margin: 1rem 0;
+  gap: 0.5rem;
   .messageInfo {
     display: flex;
     flex-direction: column;
+
     span {
       opacity: 50%;
     }
     img {
-      width: 15%;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
     }
   }
   .messageContent {
@@ -17,6 +22,7 @@
     p {
       border-radius: 0 10px 10px 10px;
       max-width: max-content;
+      margin-top: auto;
     }
     img {
       width: 40%;
@@ -27,9 +33,10 @@
     .messageContent {
       align-items: flex-end;
       p {
-        background-color: black;
-        color: white;
-        border-radius: 10px 0px 10px 10px;
+        background-color: var(--black);
+        color: var(--white);
+        border-radius: 1rem 0px 1rem 1rem;
+        padding: 1rem ;
       }
     }
   }

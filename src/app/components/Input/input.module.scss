@@ -1,21 +1,25 @@
 .input {
-  border-top: 1px solid black;
-  height: 10%;
+  border-top: 1px solid  var(--dark);
+  padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   input {
-    width: 100%;
+    width: 74%;
   }
   .send {
     display: flex;
     align-items: center;
+    gap: 1rem;
     label {
       cursor: pointer;
     }
     input {
       display: none;
       cursor: pointer;
+      .clip {
+        width: 5rem;
+      }
     }
   }
 }

@@ -1,0 +1,85 @@
+.card {
+  width: fit-content;
+  background-color: var(--darkglass);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+}
+
+.cardItems {
+  width: 100%;
+  --card-border: 1rem;
+  border-radius: var(--card-border);
+}
+
+.cardButton {
+  --card-border: 0.8rem;
+  border-radius: var(--card-border);
+  padding: 1rem 2rem;
+  font-size: 2rem;
+}
+.cardAddButton {
+  width: 100%;
+  --card-border: 0.5rem;
+  border-radius: var(--card-border);
+  padding: 1rem;
+  font-size: 2rem;
+}
+
+.glow {
+  --border-size: 1px;
+  --spotlight-size: 100px;
+  position: relative;
+}
+
+.glow::before,
+.glow::after {
+  content: "";
+  position: absolute;
+  inset: calc(var(--border-size) * 0);
+  border: var(--border-size) solid transparent;
+  border-radius: var(--card-border);
+  background-attachment: fixed;
+  mask: linear-gradient(transparent, transparent),
+    linear-gradient(rgb(255, 255, 255), white);
+  mask-clip: padding-box, border-box;
+  mask-composite: intersect;
+}
+
+/* This is the emphasis light */
+.glow::before {
+  background-image: radial-gradient(
+    calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at
+      calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
+    hsl(160 75% 60% / var(--border-spot-opacity, 1)),
+    transparent 300%
+  );
+  filter: brightness(100);
+}
+/* This is the spotlight */
+.glow::after {
+  background-image: radial-gradient(
+    calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at
+      calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
+    transparent 200%
+  );
+}
+
+.glow .glow {
+  position: absolute;
+  inset: 0;
+}
+
+.glow > .glow {
+  filter: blur(calc(var(--border-size) * 10));
+}
+
+.glow > .glow::before {
+  inset: -5px;
+  border-width: 5px;
+}
+
+@media (max-width: 768px) {
+  .glow {
+    --spotlight-size: 0%;
+  }
+}
