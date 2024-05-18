@@ -9,7 +9,7 @@ const Chat = () => {
   return (
     <div className={styles.chat}>
       <div className={styles.chatInfo}>
-     {data.user?.displayName}
+     <h3>{data.user?.displayName}</h3>
       </div>
       <ChatBox />
       <Input />

@@ -15,6 +15,7 @@ import {
 import { db } from "@/app/api/firebase";
 import { AuthContext } from "@/app/context/AuthContext";
 import Button from "../Button/Button";
+import { FiSearch } from "react-icons/fi";
 
 const Search = () => {
   const [username, setUsername] = useState("");
@@ -89,7 +90,7 @@ const Search = () => {
           value={username}
         />
         <Button onClick={handleSearch} className={"stock"}>
-          ⌕
+          <FiSearch />
         </Button>
       </div>
       {err && <span>Пользователь не найден</span>}

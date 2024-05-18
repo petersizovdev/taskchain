@@ -7,10 +7,9 @@
   .chatInfo {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid black;
-    height: 5%;
-    min-height: 2rem;
-    padding: 0.5rem;
+    border-bottom: 1px solid var(--dark);
+    min-height: 5rem;
+    padding-left: 1rem;
     span {
       color: var(--gray);
       margin-right: 0.5rem;

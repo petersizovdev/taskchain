@@ -19,7 +19,7 @@ const Welcome = () => {
           </h3>
           <Link
             style={{ textDecoration: "none", color: "inherit" }}
-            href="/swap"
+            href="/messenger"
           >
             <Card className="cardButton">
               <h4 className={styles.cardButton}> Перейти к Мессенджеру</h4>

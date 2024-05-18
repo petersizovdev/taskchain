@@ -1,6 +1,12 @@
 .chatBox {
+  display: flex;
+  flex-direction: column;
   padding: 0.5rem;
   height: 85%;
   overflow: scroll;
   overflow-x: hidden;
+  h5 {
+    margin: auto;
+    color: var(--gray);
+  }
 }

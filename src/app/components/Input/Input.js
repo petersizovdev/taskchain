@@ -12,7 +12,8 @@ import { db, storage } from "@/app/api/firebase";
 import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import styles from "./input.module.scss";
-import Button from '../Button/Button';
+import Button from "../Button/Button";
+import { FiPaperclip } from "react-icons/fi";
 
 const Input = () => {
   const [text, setText] = useState("");
@@ -87,9 +88,15 @@ const Input = () => {
           onChange={(e) => setImg(e.target.files[0])}
         />
         <label htmlFor="file">
-          <img src="" alt="file" width={160} height={300} />
+          <FiPaperclip size={"1.5rem"} />
         </label>
-        <Button className={"accent"} onClick={handleSend}>Отправить</Button>
+        <Button
+          disabled={!text.trim()}
+          className={"accent"}
+          onClick={handleSend}
+        >
+          Отправить
+        </Button>
       </div>
     </div>
   );

@@ -4,11 +4,11 @@
   align-items: center;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  background-color: rgba(34, 34, 34, 0.75);
+  background-color: var(--blackglass);
   width: 100%;
   position: fixed;
   z-index: 99;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.125);
+  border-bottom: 1px solid var(--dark);
 
   .logo {
     margin-left: 2rem;

@@ -1,5 +1,5 @@
 .input {
-  border-top: 1px solid black;
+  border-top: 1px solid  var(--dark);
   padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
@@ -17,6 +17,9 @@
     input {
       display: none;
       cursor: pointer;
+      .clip {
+        width: 5rem;
+      }
     }
   }
 }

@@ -6,6 +6,9 @@
   transition: border-color 0.3s, box-shadow 0.3s;
   backdrop-filter: blur(5px);
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .accent {
@@ -18,11 +21,11 @@
   color: var(--white);
 }
 .stock {
+
   background-color: var(--black);
   color: #fff;
   transform: scale(1.05);
   transition: all 0.1s;
-  
 }
 
 .outlined:hover {
