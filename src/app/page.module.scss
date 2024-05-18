@@ -16,6 +16,16 @@
       display: flex;
       margin: 6rem;
     }
+    .blub2 {
+      position: absolute;
+      top: 100%;
+      left: 5%;
+      scale: 1.2;
+      rotate: 180deg;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: -1;
+    }
   }
 
   img {

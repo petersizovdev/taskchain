@@ -31,6 +31,7 @@ const Accordion = () => {
                 <div className={styles.dropdown}></div>
                 {clicked === index && (
                   <div className={styles.dropdownopen}>
+               
                     <p>{answer}</p>
                   </div>
                 )}

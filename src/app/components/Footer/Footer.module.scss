@@ -1,0 +1,55 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem;
+}
+
+.footerBlock {
+  width: 200px;
+  gap: 0.5rem;
+}
+.middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  opacity: 0.5;
+}
+.right {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 2rem;
+  opacity: 0.5;
+  img {
+    width: 2.5rem;
+  }
+}
+.footerBlock span {
+  text-align: center;
+  color: var(--white-glass);
+  cursor: pointer;
+  font-size: 1.25rem;
+  opacity: 0.5;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  .logoMobile {
+    width: 4rem;
+    height: 4rem;
+  }
+  .logoText {
+    width: 8rem;
+    height: 4rem;
+  }
+}
+.path {
+  fill: var(--white-glass);
+}
