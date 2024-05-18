@@ -7,13 +7,17 @@ import { auth, storage, db } from "../../api/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
-import Link from 'next/link';
+import Link from "next/link";
+import Header from "@/app/components/Header/Header";
+import Card from "@/app/components/Card/Card";
+import { FiImage } from "react-icons/fi";
+import Button from "@/app/components/Button/Button";
 
 const Register = () => {
   const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  
+
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
@@ -63,26 +67,38 @@ const Register = () => {
   };
 
   return (
-    <div className="formContainer">
-      <div className="formWrapper">
-        <span className="logo">Lama Chat</span>
-        <span className="title">Register</span>
-        <form onSubmit={handleSubmit}>
-          <input required type="text" placeholder="display name" />
-          <input required type="email" placeholder="email" />
-          <input required type="password" placeholder="password" />
-          <input required style={{ display: "none" }} type="file" id="file" />
-          <label htmlFor="file">
-            <img src='' alt="" />
-            <span>Add an avatar</span>
-          </label>
-          <button disabled={loading}>Sign up</button>
-          {loading && "Uploading and compressing the image please wait..."}
-          {err && <span>Something went wrong</span>}
-        </form>
-        <p>
-          You do have an account? <Link href="/login">Login</Link>
-        </p>
+    <div className={styles.formContainer}>
+      <Header />
+      <div className={styles.formCard}>
+        <Card className="cardButton">
+          <div className={styles.form}>
+            <h1>Регистрация</h1>
+            <form onSubmit={handleSubmit}>
+              <input required type="text" placeholder="display name" />
+              <input required type="email" placeholder="email" />
+              <input required type="password" placeholder="password" />
+              <input
+                required
+                style={{ display: "none" }}
+                type="file"
+                id="file"
+              />
+              <label htmlFor="file">
+              <FiImage />
+                <h4>
+                 
+                  Загрузить аватар
+                </h4>
+              </label>
+              <Button className={"accent"}>Зарегистрироваться</Button>
+              {loading && "Сохраняем данные..."}
+              {err && <span>Что-то пошло не так...</span>}
+            </form>
+            <p>
+              Есть аккаунт? <Link href="/login">Вход</Link>
+            </p>{" "}
+          </div>
+        </Card>
       </div>
     </div>
   );
