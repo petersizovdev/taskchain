@@ -1,9 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
+  --darkglass:rgba(34, 34, 34, 0.75);
   --dark: #222222;
   --black: #0c0c0c;
-  --gray: #5A5A5A;
+  --gray: #5a5a5a;
   --white: #e8e5e5;
   --green: #02cc6f;
   --red: #e44d4d;
@@ -13,7 +14,7 @@
   margin: 0;
   padding: 0;
 
-  border: 1px solid red;
+ /* border: 1px solid red;*/
 }
 
 input {
@@ -39,39 +40,42 @@ body {
   min-width: 320px;
   background-color: var(--black);
   color: var(--white);
+
 }
 
 /* Заголовки */
 h1 {
   font-size: 2.5rem; /* 40px */
+  font-weight: 400;
 }
 
 h2 {
   font-size: 2rem; /* 32px */
+  font-weight: 400;
 }
 
 h3 {
-  font-size: 1.5rem; /* 24px */
+  font-size: 1.5rem; /* 24px */ font-weight: 400;
 }
 
 h4 {
-  font-size: 1.25rem; /* 20px */
+  font-size: 1.25rem; /* 20px */ font-weight: 400;
 }
 
 h5 {
-  font-size: 1rem; /* 16px */
+  font-size: 1rem; /* 16px */ font-weight: 400;
 }
 
 h6 {
-  font-size: 0.875rem; /* 14px */
+  font-size: 0.875rem; /* 14px */ font-weight: 400;
 }
 
 p {
-  font-size: 1rem; /* 16px */
+  font-size: 1rem; /* 16px */ font-weight: 400;
 }
 
 span {
-  font-size: 1rem; /* 16px */
+  font-size: 1rem; /* 16px */ font-weight: 400;
 }
 
 a {

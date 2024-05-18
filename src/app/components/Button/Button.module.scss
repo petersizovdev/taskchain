@@ -1,5 +1,5 @@
 .button {
-  font-size: 1.5rem;
+  font-size: 1rem;
   border: 1px solid transparent;
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
@@ -23,9 +23,6 @@
   transform: scale(1.05);
   transition: all 0.1s;
   
-}
-.stock:hover {
-  scale: 105%;
 }
 
 .outlined:hover {

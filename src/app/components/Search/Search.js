@@ -88,7 +88,7 @@ const Search = () => {
           onChange={(e) => setUsername(e.target.value)}
           value={username}
         />
-        <Button onClick={handleSearch} className={"outlined"}>
+        <Button onClick={handleSearch} className={"stock"}>
           ⌕
         </Button>
       </div>
@@ -97,7 +97,7 @@ const Search = () => {
         <div className={styles.searchUserChat} onClick={handleSelect}>
           <img src={user.photoURL} alt="" />
           <span>{user.displayName}</span>
-          <h4 >+</h4>
+          <h4>+</h4>
         </div>
       )}
     </div>

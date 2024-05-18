@@ -1,3 +1,4 @@
+import Header from "./components/Header/Header";
 import { AuthContextProvider } from "./context/AuthContext";
 import { ChatContextProvider } from "./context/ChatContext";
 import "./globals.css";
@@ -10,7 +11,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      
       <body>
         <AuthContextProvider>
           <ChatContextProvider>{children}</ChatContextProvider>

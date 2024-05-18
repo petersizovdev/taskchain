@@ -89,7 +89,7 @@ const Input = () => {
         <label htmlFor="file">
           <img src="" alt="file" width={160} height={300} />
         </label>
-        <Button className={"outlined"} onClick={handleSend}>Отправить</Button>
+        <Button className={"accent"} onClick={handleSend}>Отправить</Button>
       </div>
     </div>
   );

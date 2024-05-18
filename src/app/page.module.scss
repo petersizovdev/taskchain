@@ -1,13 +1,25 @@
 .container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100svh;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.messengerContainer {
+.about {
   display: flex;
-  border: 1px solid black;
-  width: 80%;
-  height: 80%;
+  justify-content: space-between;
+  align-items: center;
+  .aboutText {
+    h1 {
+      margin: 6rem;
+    }
+    h2 {
+      align-items: center;
+      display: flex;
+      margin: 6rem;
+    }
+  }
+
+  img {
+    margin: 0 2rem 0 auto;
+    scale: 0.9;
+  }
 }
