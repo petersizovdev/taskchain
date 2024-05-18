@@ -36,8 +36,8 @@ const Login = () => {
           <div className={styles.form}>
             <h1 >Вход</h1>
             <form onSubmit={handleSubmit}>
-              <input type="email" placeholder="email" />
-              <input type="password" placeholder="password" />
+              <input type="email" placeholder="E-mail" />
+              <input type="password" placeholder="Пароль" />
               <Button className={"accent"}>Войти</Button>
               {err && <span>Что-то пошло не так...</span>}
             </form>
