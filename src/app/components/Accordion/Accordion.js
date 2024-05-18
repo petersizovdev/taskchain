@@ -25,7 +25,7 @@ const Accordion = () => {
             return (
               <div key={index}>
                 <div className={styles.wrap} onClick={() => toggle(index)}>
-                  <h4>{question}</h4>
+                  <h1>{question}</h1>
                   <span>{clicked === index ? <FiMinus /> : <FiPlus />}</span>
                 </div>
                 <div className={styles.dropdown}></div>
