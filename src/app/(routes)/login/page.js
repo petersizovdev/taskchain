@@ -11,7 +11,7 @@ import Header from "@/app/components/Header/Header";
 import Footer from "@/app/components/Footer/Footer";
 import Card from "@/app/components/Card/Card";
 import Button from "@/app/components/Button/Button";
-import DocSaver from '@/app/components/DocSaver/DocSaver';
+import DocSaver from "@/app/components/DocSaver/DocSaver";
 
 const Login = () => {
   const [err, setErr] = useState(false);
@@ -35,7 +35,7 @@ const Login = () => {
       <div className={styles.formCard}>
         <Card className="cardButton">
           <div className={styles.form}>
-            <h1 >Вход</h1>
+            <h1>Вход</h1>
             <form onSubmit={handleSubmit}>
               <input type="email" placeholder="E-mail" />
               <input type="password" placeholder="Пароль" />
@@ -48,7 +48,7 @@ const Login = () => {
           </div>
         </Card>
       </div>
-      <DocSaver/>
+
       <Footer />
     </div>
   );
