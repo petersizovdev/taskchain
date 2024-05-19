@@ -32,11 +32,12 @@
     color: var(--gray);
     .closeModal {
       position: absolute;
+
       color: var(--gray);
       cursor: pointer;
       z-index: 99;
       top: 0;
-      right: -4%;
+      right: -2%;
     }
   }
   span a {

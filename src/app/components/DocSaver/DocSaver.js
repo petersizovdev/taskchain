@@ -73,7 +73,7 @@ function DocSaver() {
               {fileUrl && (
                 <span>
                   <Link
-                    href={fileUrl}
+                     href={`https://${fileUrl}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
