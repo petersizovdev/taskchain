@@ -9,14 +9,15 @@ const Header = () => {
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
-        <Image className={styles.logoMobile} src={lm}></Image>
-        <Image className={styles.logoText} src={lt}></Image>
+        <Link href="/">
+          <Image className={styles.logoMobile} src={lm}></Image>
+          <Image className={styles.logoText} src={lt}></Image>
+        </Link>
       </div>
       <div className={styles.nav}>
         <Button className={"stock"}>О нас</Button>
         <Button className={"stock"}>Контакты</Button>
         <Link href="/messenger">
-          {" "}
           <Button className={"accent"}> Мессенджер</Button>
         </Link>
       </div>

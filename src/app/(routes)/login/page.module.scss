@@ -1,3 +1,37 @@
+.formContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100svh;
+}
+.formCard {
+  margin: auto;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    align-items: center;
+    gap: 2rem;
+    p {
+      z-index: 99;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      z-index: 99;
+      button {
+        width: 10rem;
+      }
+      span {
+        color: var(--red);
+      }
+    
+    }
+  }
+}
 .avatarUploader {
   display: none;
 }

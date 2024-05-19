@@ -27,10 +27,9 @@ const Welcome = () => {
           </Link>
         </div>
       </div>
-
+      <Image className={styles.blub3} priority src={blub3} alt="" />
       <Image className={styles.blub} priority src={blub2} alt="" />
       <Image className={styles.blub2} priority src={blub} alt="" />
-      <Image className={styles.blub3} priority src={blub3} alt="" />
     </div>
   );
 };

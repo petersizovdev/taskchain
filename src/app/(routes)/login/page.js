@@ -1,12 +1,16 @@
 "use client";
 
 import styles from "./page.module.scss";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../api/firebase";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Header from "@/app/components/Header/Header";
+import Footer from "@/app/components/Footer/Footer";
+import Card from "@/app/components/Card/Card";
+import Button from "@/app/components/Button/Button";
 
 const Login = () => {
   const [err, setErr] = useState(false);
@@ -25,20 +29,25 @@ const Login = () => {
     }
   };
   return (
-    <div className="formContainer">
-      <div className="formWrapper">
-      
-        <span className="title">Login</span>
-        <form onSubmit={handleSubmit}>
-          <input type="email" placeholder="email" />
-          <input type="password" placeholder="password" />
-          <button>Sign in</button>
-          {err && <span>Something went wrong</span>}
-        </form>
-        <p>
-          You dont have an account? <Link href="/register">Register</Link>
-        </p>
+    <div className={styles.formContainer}>
+      <Header />
+      <div className={styles.formCard}>
+        <Card className="cardButton">
+          <div className={styles.form}>
+            <h1 >Вход</h1>
+            <form onSubmit={handleSubmit}>
+              <input type="email" placeholder="E-mail" />
+              <input type="password" placeholder="Пароль" />
+              <Button className={"accent"}>Войти</Button>
+              {err && <span>Что-то пошло не так...</span>}
+            </form>
+            <p>
+              Нет аккаунта? <Link href="/register">Регистрация</Link>
+            </p>
+          </div>
+        </Card>
       </div>
+      <Footer />
     </div>
   );
 };
