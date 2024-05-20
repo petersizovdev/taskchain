@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Card from "../Card/Card";
 import styles from "./docsaver.module.scss";
 import Button from "../Button/Button";
 import Link from "next/link";
 import { TbCubePlus, TbX, TbFile } from "react-icons/tb";
+
+import { doc, onSnapshot, setDoc } from "firebase/firestore";
+import { ChatContext } from "@/app/context/ChatContext";
+import { db } from "@/app/api/firebase";
 
 function DocSaver() {
   const [selectedFile, setSelectedFile] = useState();
@@ -20,8 +24,9 @@ function DocSaver() {
     try {
       const formData = new FormData();
       formData.append("file", selectedFile);
+
       const metadata = JSON.stringify({
-        name: "File name",
+        name: fileName,
       });
       formData.append("pinataMetadata", metadata);
 
@@ -42,12 +47,34 @@ function DocSaver() {
       );
       const resData = await res.json();
       const newFileUrl = `${process.env.NEXT_PUBLIC_GATEWAY_URL}/ipfs/${resData.IpfsHash}`;
+
       setFileUrl(newFileUrl); // Обновляем состояние с новой ссылкой
       console.log(newFileUrl);
+
+      // Сохраняем новую ссылку в базу данных
+      const docRef = doc(db, "chats", data.chatId);
+      await setDoc(docRef, { newFileUrl: newFileUrl }, { merge: true });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
+
+  const [newFileUrl, setNewFileUrl] = useState(null);
+  const { data } = useContext(ChatContext);
+
+  useEffect(() => {
+    const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
+      if (doc.exists()) {
+        const chatData = doc.data();
+        const savedFileUrl = chatData.newFileUrl || null;
+        setNewFileUrl(savedFileUrl);
+      }
+    });
+
+    return () => {
+      unSub();
+    };
+  }, [data.chatId]);
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -73,7 +100,7 @@ function DocSaver() {
               {fileUrl && (
                 <span>
                   <Link
-                     href={`https://${fileUrl}`}
+                    href={`https://${fileUrl}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

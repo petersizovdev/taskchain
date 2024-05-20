@@ -22,7 +22,7 @@ const ChatBox = () => {
   return (
     <div className={styles.chatBox}>
       {messages == 0 ? (
-        <h5>Выберете диалог</h5>
+        <h5>Начните диалог</h5>
       ) : (
         messages.map((m) => <Message message={m} key={m.id} />)
       )}
