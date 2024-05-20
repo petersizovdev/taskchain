@@ -4,7 +4,6 @@ import styles from "./docsaver.module.scss";
 import Button from "../Button/Button";
 import Link from "next/link";
 import { TbCubePlus, TbX, TbFile } from "react-icons/tb";
-
 import { doc, onSnapshot, setDoc } from "firebase/firestore";
 import { ChatContext } from "@/app/context/ChatContext";
 import { db } from "@/app/api/firebase";
@@ -14,6 +13,7 @@ function DocSaver() {
   const [fileUrl, setFileUrl] = useState(null); // Добавляем состояние для ссылки
   const [fileName, setFileName] = useState(null); // Состояние для имени файла
   const [showModal, setShowModal] = useState(false); // Состояние для модального окна
+  const [IPFSlinks, setIPFSLinks] = useState([]); // Массив для хранения ссылок
 
   const changeHandler = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -53,22 +53,17 @@ function DocSaver() {
 
       // Сохраняем новую ссылку в базу данных
       const docRef = doc(db, "chats", data.chatId);
-      await setDoc(docRef, { newFileUrl: newFileUrl }, { merge: true });
+      await setDoc(docRef, { IPFSlinks: [...IPFSlinks, newFileUrl] }, { merge: true });
     } catch (error) {
       console.error(error);
     }
   };
 
-  const [newFileUrl, setNewFileUrl] = useState(null);
   const { data } = useContext(ChatContext);
 
   useEffect(() => {
     const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
-      if (doc.exists()) {
-        const chatData = doc.data();
-        const savedFileUrl = chatData.newFileUrl || null;
-        setNewFileUrl(savedFileUrl);
-      }
+      doc.exists() && setIPFSLinks(doc.data().IPFSlinks || []); // Получаем ссылки из базы
     });
 
     return () => {
@@ -83,13 +78,13 @@ function DocSaver() {
   return (
     <>
       <span className={styles.docSaverBtn}>
-        {newFileUrl ? (
+        {IPFSlinks.length > 0 ? (
           <Link
-            href={`https://${newFileUrl}`}
+            href={`https://${IPFSlinks[IPFSlinks.length - 1]}`}
             target="_blank"
             rel="noopener noreferrer"
           >
-             {newFileUrl.slice(-46)}
+            {IPFSlinks[IPFSlinks.length - 1].slice(-46)}
           </Link>
         ) : (
           <span onClick={() => setShowModal(true)}> Сохранить договор</span>
