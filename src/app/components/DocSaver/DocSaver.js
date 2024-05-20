@@ -82,11 +82,22 @@ function DocSaver() {
 
   return (
     <>
-      <span className={styles.docSaverBtn} onClick={() => setShowModal(true)}>
-        Сохранить договор <TbCubePlus />
+      <span className={styles.docSaverBtn}>
+        {newFileUrl ? (
+          <Link
+            href={`https://${newFileUrl}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+             {newFileUrl.slice(-46)}
+          </Link>
+        ) : (
+          <span onClick={() => setShowModal(true)}> Сохранить договор</span>
+        )}
+        <TbCubePlus onClick={() => setShowModal(true)} />
       </span>
 
-      {showModal && ( // Условное рендеринг модального окна
+      {showModal && (
         <div className={styles.docSaverBg} onClick={handleCloseModal}>
           <Card className="cardButton">
             <div
@@ -94,7 +105,7 @@ function DocSaver() {
               onClick={(e) => e.stopPropagation()}
             >
               <h3 className={styles.modalH}>
-                Загрузить документ
+                Загрузите документ
                 <TbX className={styles.closeModal} onClick={handleCloseModal} />
               </h3>
               {fileUrl && (
