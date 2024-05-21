@@ -27,15 +27,31 @@
     img {
       width: 40%;
     }
+    span{
+      color: var(--gray);
+    }
   }
   &.owner {
-    flex-direction: row-reverse;
+    flex-direction: row-reverse; 
     .messageContent {
       align-items: flex-end;
       p {
         background-color: var(--black);
         color: var(--white);
-        border-radius: 1rem 0px 1rem 1rem;
+        border-radius: 1rem 0px 1rem 1rem; 
+        padding: 1rem ;
+      }
+    }
+  }
+  /*стили для сообщений получателя */
+  &.receiver {
+    flex-direction: row; 
+    .messageContent {
+      align-items: flex-start; 
+      p {
+        background-color: var(--dark);
+        color: var(--white);
+        border-radius: 0 1rem 1rem 1rem; 
         padding: 1rem ;
       }
     }

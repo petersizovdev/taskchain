@@ -17,24 +17,26 @@ import { FiPaperclip } from "react-icons/fi";
 
 const Input = () => {
   const [text, setText] = useState("");
-  const [img, setImg] = useState(null);
+  const [file, setFile] = useState(null); // Используем file вместо img
+  const [fileName, setFileName] = useState("");
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
 
   const handleSend = async () => {
-    if (img) {
+    if (file) {
       const storageRef = ref(storage, uuid());
-      const uploadTask = uploadBytesResumable(storageRef, img);
+      const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on(
         (error) => {
-          //TODO:Handle Error
+          console.error("Error uploading file:", error);
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+            console.log("Download URL:", downloadURL);
             await updateDoc(doc(db, "chats", data.chatId), {
               messages: arrayUnion({
                 id: uuid(),
-                text,
+                text: fileName, // Отправляем имя файла как текст
                 senderId: currentUser.uid,
                 date: Timestamp.now(),
                 img: downloadURL,
@@ -56,20 +58,28 @@ const Input = () => {
 
     await updateDoc(doc(db, "userChats", currentUser.uid), {
       [data.chatId + ".lastMessage"]: {
-        text,
+        text: fileName || text, // Используем имя файла, если отправлен файл
       },
       [data.chatId + ".date"]: serverTimestamp(),
     });
 
     await updateDoc(doc(db, "userChats", data.user.uid), {
       [data.chatId + ".lastMessage"]: {
-        text,
+        text: fileName || text, // Используем имя файла, если отправлен файл
       },
       [data.chatId + ".date"]: serverTimestamp(),
     });
 
     setText("");
-    setImg(null);
+    setFile(null); // Сбрасываем file после отправки
+    setFileName("");
+  };
+
+  const onFileChange = (e) => {
+    const file = e.target.files[0];
+    setFile(file);
+    setFileName(file.name);
+    setText(file.name); // Устанавливаем имя файла в поле ввода
   };
 
   return (
@@ -80,24 +90,24 @@ const Input = () => {
         onChange={(e) => setText(e.target.value)}
         value={text}
       />
-      <div className={styles.send}>
-        <input
-          type="file"
-          style={{ display: "none" }}
-          id="file"
-          onChange={(e) => setImg(e.target.files[0])}
-        />
+      <div className={styles.fileUpload}>
         <label htmlFor="file">
           <FiPaperclip size={"1.5rem"} />
         </label>
-        <Button
-          disabled={!text.trim()}
-          className={"accent"}
-          onClick={handleSend}
-        >
-          Отправить
-        </Button>
+        <input
+          type="file"
+          id="file"
+          style={{ display: "none" }}
+          onChange={onFileChange}
+        />
       </div>
+      <Button
+        disabled={!text.trim() && !file} // Отправлять можно и без текста, если есть файл
+        className="accent"
+        onClick={handleSend}
+      >
+        Отправить
+      </Button>
     </div>
   );
 };
