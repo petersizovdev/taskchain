@@ -10,9 +10,12 @@ const Chat = () => {
   return (
     <div className={styles.chat}>
       <div className={styles.chatInfo}>
-        <h3>{data.user?.displayName}</h3>
-
-        <DocSaver />
+        {data.user?.displayName ? (
+          <>
+            <h3>{data.user?.displayName}</h3>
+            <DocSaver />
+          </>
+        ) : null}
       </div>
       <ChatBox />
       <Input />

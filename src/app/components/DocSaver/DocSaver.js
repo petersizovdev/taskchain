@@ -115,7 +115,7 @@ function DocSaver() {
                 </span>
               )}
               <label htmlFor="file">
-                {fileName ? fileName : "Выбрать файл"}{" "}
+                {fileName ? fileName : "Выбрать файл"}
                 <TbFile size={"1.5rem"} />
               </label>
               <input

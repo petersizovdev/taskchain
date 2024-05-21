@@ -14,30 +14,32 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import styles from "./input.module.scss";
 import Button from "../Button/Button";
 import { FiPaperclip } from "react-icons/fi";
-
 const Input = () => {
   const [text, setText] = useState("");
-  const [img, setImg] = useState(null);
+  const [file, setFile] = useState(null);
+  const [fileName, setFileName] = useState("");
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
 
   const handleSend = async () => {
-    if (img) {
+    if (file) {
       const storageRef = ref(storage, uuid());
-      const uploadTask = uploadBytesResumable(storageRef, img);
+      const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on(
         (error) => {
-          //TODO:Handle Error
+          console.error("Error uploading file:", error);
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+            console.log("Download URL:", downloadURL);
             await updateDoc(doc(db, "chats", data.chatId), {
               messages: arrayUnion({
                 id: uuid(),
-                text,
+                text: text,
                 senderId: currentUser.uid,
                 date: Timestamp.now(),
                 img: downloadURL,
+                fileName: file.name,
               }),
             });
           });
@@ -56,20 +58,27 @@ const Input = () => {
 
     await updateDoc(doc(db, "userChats", currentUser.uid), {
       [data.chatId + ".lastMessage"]: {
-        text,
+        text: file ? fileName : text, // Используем имя файла, если отправлен файл
       },
       [data.chatId + ".date"]: serverTimestamp(),
     });
 
-    await updateDoc(doc(db, "userChats", data.user.uid), {
-      [data.chatId + ".lastMessage"]: {
-        text,
-      },
-      [data.chatId + ".date"]: serverTimestamp(),
-    });
+    
+    setText(""); // Сброс после отправки
+    setFile(null); 
+    setFileName("");
+  };
 
-    setText("");
-    setImg(null);
+  const onFileChange = (e) => {
+    const file = e.target.files[0];
+    setFile(file);
+    setFileName(file.name);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSend();
+    }
   };
 
   return (
@@ -79,25 +88,26 @@ const Input = () => {
         placeholder="Написать сообщение..."
         onChange={(e) => setText(e.target.value)}
         value={text}
+        onKeyDown={handleKeyDown}
       />
-      <div className={styles.send}>
-        <input
-          type="file"
-          style={{ display: "none" }}
-          id="file"
-          onChange={(e) => setImg(e.target.files[0])}
-        />
+      <div className={styles.fileUpload}>
         <label htmlFor="file">
           <FiPaperclip size={"1.5rem"} />
         </label>
-        <Button
-          disabled={!text.trim()}
-          className={"accent"}
-          onClick={handleSend}
-        >
-          Отправить
-        </Button>
+        <input
+          type="file"
+          id="file"
+          style={{ display: "none" }}
+          onChange={onFileChange}
+        />
       </div>
+      <Button
+        disabled={!text.trim() && !file}
+        className="accent"
+        onClick={handleSend}
+      >
+        Отправить
+      </Button>
     </div>
   );
 };
