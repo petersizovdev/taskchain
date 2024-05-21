@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import styles from "./chats.module.scss";
@@ -41,13 +42,13 @@ const Chats = () => {
             onClick={() => handleSelect(chat[1].userInfo)}
           >
             <div className={styles.chatInfo}>
-              <img
-                src={chat[1].userInfo.photoURL}
-                alt=""
-              />
+              <img src={chat[1].userInfo.photoURL} alt="" />
               <span>{chat[1].userInfo.displayName}</span>
             </div>
-            <p>{chat[1].lastMessage?.text}</p>
+            <p>
+              {chat[1].lastMessage?.text.slice(0, 16)}
+              {chat[1].lastMessage?.text.length > 16 ? "..." : ""}
+            </p>
           </div>
         ))}
     </div>

@@ -14,10 +14,9 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import styles from "./input.module.scss";
 import Button from "../Button/Button";
 import { FiPaperclip } from "react-icons/fi";
-
 const Input = () => {
   const [text, setText] = useState("");
-  const [file, setFile] = useState(null); // Используем file вместо img
+  const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("");
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
@@ -36,10 +35,11 @@ const Input = () => {
             await updateDoc(doc(db, "chats", data.chatId), {
               messages: arrayUnion({
                 id: uuid(),
-                text: fileName, // Отправляем имя файла как текст
+                text: text,
                 senderId: currentUser.uid,
                 date: Timestamp.now(),
                 img: downloadURL,
+                fileName: file.name,
               }),
             });
           });
@@ -58,20 +58,14 @@ const Input = () => {
 
     await updateDoc(doc(db, "userChats", currentUser.uid), {
       [data.chatId + ".lastMessage"]: {
-        text: fileName || text, // Используем имя файла, если отправлен файл
+        text: file ? fileName : text, // Используем имя файла, если отправлен файл
       },
       [data.chatId + ".date"]: serverTimestamp(),
     });
 
-    await updateDoc(doc(db, "userChats", data.user.uid), {
-      [data.chatId + ".lastMessage"]: {
-        text: fileName || text, // Используем имя файла, если отправлен файл
-      },
-      [data.chatId + ".date"]: serverTimestamp(),
-    });
-
-    setText("");
-    setFile(null); // Сбрасываем file после отправки
+    
+    setText(""); // Сброс после отправки
+    setFile(null); 
     setFileName("");
   };
 
@@ -79,7 +73,12 @@ const Input = () => {
     const file = e.target.files[0];
     setFile(file);
     setFileName(file.name);
-    setText(file.name); // Устанавливаем имя файла в поле ввода
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSend();
+    }
   };
 
   return (
@@ -89,6 +88,7 @@ const Input = () => {
         placeholder="Написать сообщение..."
         onChange={(e) => setText(e.target.value)}
         value={text}
+        onKeyDown={handleKeyDown}
       />
       <div className={styles.fileUpload}>
         <label htmlFor="file">
@@ -102,7 +102,7 @@ const Input = () => {
         />
       </div>
       <Button
-        disabled={!text.trim() && !file} // Отправлять можно и без текста, если есть файл
+        disabled={!text.trim() && !file}
         className="accent"
         onClick={handleSend}
       >
