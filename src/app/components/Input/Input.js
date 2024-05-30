@@ -89,7 +89,7 @@ const Input = () => {
         value={text}
         onKeyDown={handleKeyDown}
       />
-<div className={styles.fileUpload} style={{ opacity: file ? 1 : 0.5 }}>
+      <div className={styles.fileUpload} style={{ opacity: file ? 1 : 0.5 }}>
         <label htmlFor="file">
           <FiPaperclip size={"1.5rem"} />
         </label>

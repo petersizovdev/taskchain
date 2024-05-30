@@ -15,5 +15,20 @@
       color: var(--gray);
       margin-right: 0.5rem;
     }
+    h3 {
+      margin-right: 1rem;
+    }
+    .chatMenu {
+      display: none;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .chat {
+    .chatInfo {
+      .chatMenu {
+        display: block;
+      }
+    }
   }
 }

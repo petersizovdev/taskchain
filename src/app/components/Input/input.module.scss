@@ -1,11 +1,12 @@
 .input {
-  border-top: 1px solid  var(--dark);
+  border-top: 1px solid var(--dark);
   padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
   input {
-    width: 74%;
+    width: 100%;
   }
   .send {
     display: flex;

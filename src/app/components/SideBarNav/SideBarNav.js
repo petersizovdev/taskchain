@@ -1,5 +1,4 @@
 "use client";
-
 import styles from "./sidebarnav.module.scss";
 import React, { useContext } from "react";
 import { signOut } from "firebase/auth";
@@ -18,11 +17,11 @@ const SideBarNav = () => {
         <h3>{currentUser.displayName}</h3>
       </div>
       <div className={styles.navUser}>
-        <Button className={"outlined"}>
+        <Button className={"stock"}>
           <FiSettings />
         </Button>
 
-        <Button className={"outlined"} onClick={() => signOut(auth)}>
+        <Button className={"stock"} onClick={() => signOut(auth)}>
           <FiLogOut />
         </Button>
       </div>
