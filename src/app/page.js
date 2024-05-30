@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 "use client";
 import Header from "./components/Header/Header";
 import Welcome from "./components/Welcome/Welcome";
@@ -23,11 +24,11 @@ export default function Home() {
             Рабочие контакты <br />в одном месте
           </h1>
           <h2>
-            И ничто не отвлекает <Image src={Yoga} width={128}></Image>
+          И&nbsp;ничто не&nbsp;отвлекает<Image className={styles.yoga} src={Yoga} width={128}></Image>
           </h2>
-          <Image className={styles.blub2} priority src={blub} alt="" />
+          <Image className={styles.blub2} priority src={blub} alt="" ></Image>
         </div>
-        <Image src={Mockup}></Image>
+        <Image className={styles.mockup} src={Mockup}></Image>
       </div>
       <div className={styles.about}>
         <Accordion />

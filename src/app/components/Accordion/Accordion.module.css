@@ -42,3 +42,19 @@
   border-bottom: 1px solid var(--white);
   margin: 2rem 0;
 }
+
+@media (max-width: 1024px) {
+  .accordionsection {
+    margin: 0rem;
+  }
+  .dropdownopen {
+    height: 150px;
+    color: var(--white);
+  }
+  
+  .dropdownopen p {
+    max-width: 90%;
+    font-size: 2rem;
+    margin: 2rem 0 0 0;
+  }
+}
