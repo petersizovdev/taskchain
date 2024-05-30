@@ -56,7 +56,8 @@
         margin: 0rem;
       }
       .yoga {
-        position: relative; scale: 0.9;
+        position: relative;
+        scale: 0.9;
       }
       .blub2 {
         position: absolute;
@@ -126,5 +127,20 @@
   .mockup {
     width: 50%;
     height: auto;
+  }
+}
+
+@media (max-width: 425px) {
+  .about {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 2rem 2rem;
+    .aboutText {
+      .yoga {
+        position: relative;
+        scale: 0.6;
+      }
+    }
   }
 }

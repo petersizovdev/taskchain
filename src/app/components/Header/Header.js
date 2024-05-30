@@ -1,4 +1,4 @@
-import styles from "./header.module.scss";
+import styles from "./header.module.css";
 import lm from "@/assets/svg/logomobile.svg";
 import lt from "@/assets/svg/logotext.svg";
 import Image from "next/image";

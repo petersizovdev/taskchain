@@ -21,6 +21,7 @@ const Footer = () => {
         <span>© All rights reserved</span>
       </div>
       <div className={cn([styles.footerBlock], [styles.right])}>
+        
         <Link href="https://t.me/PlusEx_bot">
           <Image src={Tg} alt=""></Image>
         </Link>

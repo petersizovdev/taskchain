@@ -15,7 +15,7 @@
   margin: 0;
   padding: 0;
 
-  border: 1px solid red;
+  /*border: 1px solid red;*/
 }
 
 input {
@@ -110,6 +110,11 @@ a:hover {
 }
 @media (max-width: 1024px) {
   html {
-   font-size: 14px;
+    font-size: 14px;
+  }
+}
+@media (max-width: 425px) {
+  html {
+    font-size: 12px;
   }
 }
