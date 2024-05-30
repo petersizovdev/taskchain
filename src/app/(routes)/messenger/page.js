@@ -23,8 +23,12 @@ export default function Home() {
     <main className={styles.container}>
       <ProtectedRoute>
         <div className={styles.messengerContainer}>
-          <SideBar />
-          <Chat />
+          <div className={styles.sideBar}>
+            <SideBar />
+          </div>
+          <div className={styles.chat}>
+            <Chat />
+          </div>
         </div>
       </ProtectedRoute>
     </main>
