@@ -14,6 +14,7 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import styles from "./input.module.scss";
 import Button from "../Button/Button";
 import { FiPaperclip } from "react-icons/fi";
+
 const Input = () => {
   const [text, setText] = useState("");
   const [file, setFile] = useState(null);
@@ -63,9 +64,8 @@ const Input = () => {
       [data.chatId + ".date"]: serverTimestamp(),
     });
 
-    
     setText(""); // Сброс после отправки
-    setFile(null); 
+    setFile(null);
     setFileName("");
   };
 
@@ -80,7 +80,6 @@ const Input = () => {
       handleSend();
     }
   };
-
   return (
     <div className={styles.input}>
       <input
@@ -90,7 +89,7 @@ const Input = () => {
         value={text}
         onKeyDown={handleKeyDown}
       />
-      <div className={styles.fileUpload}>
+<div className={styles.fileUpload} style={{ opacity: file ? 1 : 0.5 }}>
         <label htmlFor="file">
           <FiPaperclip size={"1.5rem"} />
         </label>

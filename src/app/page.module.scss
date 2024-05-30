@@ -16,9 +16,12 @@
       display: flex;
       margin: 6rem;
     }
+    .yoga {
+      position: relative;
+    }
     .blub2 {
       position: absolute;
-      top: 100%;
+      top: 40%;
       left: 5%;
       scale: 1.2;
       rotate: 180deg;
@@ -27,9 +30,117 @@
       z-index: -1;
     }
   }
+  .mockup {
+    width: 50%;
+    height: auto;
+  }
 
   img {
     margin: 0 2rem 0 auto;
     scale: 0.9;
+  }
+}
+@media (max-width: 1024px) {
+  .about {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 2rem 2rem;
+    .aboutText {
+      h1 {
+        margin: 0rem;
+      }
+      h2 {
+        align-items: center;
+        display: flex;
+        margin: 0rem;
+      }
+      .yoga {
+        position: relative;
+        scale: 0.9;
+      }
+      .blub2 {
+        position: absolute;
+        top: 25%;
+        left: 2%;
+        scale: 1;
+        rotate: 180deg;
+        opacity: 0.35;
+        pointer-events: none;
+        z-index: -1;
+      }
+    }
+    .mockup {
+      width: 60%;
+      height: auto;
+    }
+    img {
+      margin: 0 0rem 0 auto;
+      scale: 1;
+    }
+  }
+  .mockup {
+    width: 50%;
+    height: auto;
+  }
+}
+@media (max-width: 768px) {
+  .about {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 2rem 2rem;
+    .aboutText {
+      h1 {
+        margin: 0rem;
+      }
+      h2 {
+        align-items: center;
+        display: flex;
+        margin: 0rem;
+      }
+      .yoga {
+        position: relative;
+        scale: 0.8;
+      }
+      .blub2 {
+        position: absolute;
+        top: 25%;
+        left: 2%;
+        scale: 1;
+        rotate: 180deg;
+        opacity: 0.35;
+        pointer-events: none;
+        z-index: -1;
+      }
+    }
+    .mockup {
+      width: 80%;
+      height: auto;
+      margin-top: 1rem;
+    }
+    img {
+      margin: 0 0rem 0 auto;
+      scale: 1;
+    }
+  }
+  .mockup {
+    width: 50%;
+    height: auto;
+  }
+}
+
+@media (max-width: 425px) {
+  .about {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 2rem 2rem;
+    .aboutText {
+      .yoga {
+        position: relative;
+        scale: 0.6;
+      }
+    }
   }
 }

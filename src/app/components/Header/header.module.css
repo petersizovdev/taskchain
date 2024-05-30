@@ -9,23 +9,27 @@
   position: fixed;
   z-index: 99;
   border-bottom: 1px solid var(--dark);
-
-  .logo {
-    margin-left: 2rem;
-    display: flex;
-    align-items: center;
-    .logoMobile {
-      width: 4rem;
-      height: 4rem;
-    }
-    .logoText {
-      width: 8rem;
-      height: 4rem;
-    }
-  }
+}
+.logoText {
+  width: 8rem;
+  height: 4rem;
+}
+.nav {
+  display: flex;
+  gap: 1rem;
+  margin-right: 2rem;
+}
+.logo {
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+}
+.logoMobile {
+  width: 4rem;
+  height: 4rem;
+}
+@media (max-width: 768px) {
   .nav {
-    display: flex;
-    gap: 1rem;
-    margin-right: 2rem;
+    display: none;
   }
 }
