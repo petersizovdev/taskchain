@@ -4,6 +4,7 @@ import Input from "../Input/Input";
 import styles from "./chat.module.scss";
 import { ChatContext } from "../../context/ChatContext";
 import DocSaver from "../DocSaver/DocSaver";
+import SideBarMenu from "../SideBar/SideBarMenu";
 
 const Chat = () => {
   const { data } = useContext(ChatContext);
@@ -16,11 +17,14 @@ const Chat = () => {
             <DocSaver />
           </>
         ) : null}
+
+        <div className={styles.chatMenu}>
+          <SideBarMenu />
+        </div>
       </div>
       <ChatBox />
       <Input />
     </div>
   );
 };
-
 export default Chat;

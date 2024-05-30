@@ -8,11 +8,36 @@
 .messengerContainer {
   display: flex;
   border: 1px solid black;
-  width: 80%;
-  height: 80%;
+  width: 90%;
+  height: 90%;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   background-color: var(--darkglass);
   border-radius: 12px;
-  border: 1px solid  var(--dark);
+  border: 1px solid var(--dark);
+  .sideBar {
+    display: flex;
+  }
+  .chat {
+    display: flex;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .messengerContainer {
+    width: 95%;
+    height: 95%;
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    .messengerContainer {
+      width: 95%;
+      height: 98%;
+      .sideBar {
+        display: none;
+      }
+    }
+  }
 }

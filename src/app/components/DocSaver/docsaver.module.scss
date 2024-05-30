@@ -67,3 +67,8 @@
     text-decoration: underline;
   }
 }
+@media (max-width: 768px) {
+  .docSaverBg {
+    border-radius: 1rem;
+  }
+}

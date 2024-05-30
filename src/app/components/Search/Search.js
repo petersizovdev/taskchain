@@ -1,104 +1,77 @@
-"use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styles from "./search.module.scss";
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  setDoc,
-  doc,
-  updateDoc,
-  serverTimestamp,
-  getDoc,
-} from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "@/app/api/firebase";
 import { AuthContext } from "@/app/context/AuthContext";
-import Button from "../Button/Button";
-import { FiSearch } from "react-icons/fi";
 
 const Search = () => {
   const [username, setUsername] = useState("");
-  const [user, setUser] = useState(null);
-  const [err, setErr] = useState(false);
-  const { currentUser } = useContext(AuthContext);
+  const [searchResults, setSearchResults] = useState([]);
+  const [notFound, setNotFound] = useState(false); // State для обозначения "Пользователь не найден"
 
-  const handleKey = (e) => {
-    e.code === "Enter" && handleSearch();
-  };
+  useEffect(() => {
+    const handleSearch = async () => {
+      if (username.trim().length > 2) {
+        const q = query(
+          collection(db, "users"),
+          where("displayName", "==", username.trim())
+        );
 
-  const handleSearch = async () => {
-    const q = query(
-      collection(db, "users"),
-      where("displayName", "==", username) //Поиск совпадея имя из поиска и БД
-    );
-    try {
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        setUser(doc.data());
-      });
-    } catch (err) {
-      setErr(true);
-    }
-  };
+        try {
+          const querySnapshot = await getDocs(q);
+          const results = [];
+          querySnapshot.forEach((doc) => {
+            results.push(doc.data());
+          });
 
-  const handleSelect = async () => {
-    //создать чат между двумя пользователями, если его еще не существует
-    const combinedId =
-      currentUser.uid > user.uid
-        ? currentUser.uid + user.uid
-        : user.uid + currentUser.uid;
-    try {
-      const res = await getDoc(doc(db, "chats", combinedId));
-
-      if (!res.exists()) {
-        await setDoc(doc(db, "chats", combinedId), { messages: [] }); //создание перепискии в коллекции переписок
-
-        await updateDoc(doc(db, "userChats", currentUser.uid), {
-          //создание перепискии в коллекции пользователя
-          [combinedId + ".userInfo"]: {
-            uid: user.uid,
-            displayName: user.displayName,
-            photoURL: user.photoURL,
-          },
-          [combinedId + ".date"]: serverTimestamp(),
-        });
-
-        await updateDoc(doc(db, "userChats", user.uid), {
-          [combinedId + ".userInfo"]: {
-            uid: currentUser.uid,
-            displayName: currentUser.displayName,
-            photoURL: currentUser.photoURL,
-          },
-          [combinedId + ".date"]: serverTimestamp(),
-        });
+          setSearchResults(results);
+          setNotFound(results.length === 0); // Установка notFound в true, если результаты пусты
+        } catch (err) {
+          console.error(err);
+          setNotFound(true);
+          setSearchResults([]);
+        }
+      } else {
+        setSearchResults([]);
+        setNotFound(false); // Сбросить notFound при пустом запросе
       }
-    } catch (err) {}
+    };
 
-    setUser(null);
+    handleSearch();
+  }, [username]);
+
+  const handleSelect = async (selectedUser) => {
     setUsername("");
   };
 
   return (
     <div className={styles.search}>
-      <div className={styles.ssearchForm}>
+      <div className={styles.searchForm}>
         <input
           type="text"
           placeholder="Найти пользователя"
-          onKeyDown={handleKey}
           onChange={(e) => setUsername(e.target.value)}
           value={username}
         />
-        <Button onClick={handleSearch} className={"stock"}>
-          <FiSearch />
-        </Button>
       </div>
-      {err && <span>Пользователь не найден</span>}
-      {user && (
-        <div className={styles.searchUserChat} onClick={handleSelect}>
-          <img src={user.photoURL} alt="" />
-          <span>{user.displayName}</span>
-          <h4>+</h4>
+      {searchResults.length > 0 && (
+        <div className={styles.searchResults}>
+          {searchResults.map((result) => (
+            <div
+              key={result.uid}
+              className={styles.searchUserChat}
+              onClick={() => handleSelect(result)}
+            >
+              <img src={result.photoURL} alt="" />
+              <span>{result.displayName}</span>
+              <h4>+</h4>
+            </div>
+          ))}
+        </div>
+      )}
+      {notFound && (
+        <div className={styles.err}>
+          <span>Пользователь не найден</span>{" "}
         </div>
       )}
     </div>
