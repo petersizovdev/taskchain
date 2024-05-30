@@ -3,36 +3,42 @@ import Button from "../Button/Button";
 import Chats from "../Chats/Chats";
 import Search from "../Search/Search";
 import SideBarNav from "../SideBarNav/SideBarNav";
-import { FiArrowLeft } from "react-icons/fi";
+import { FiMoreHorizontal, FiX } from "react-icons/fi";
 import styles from "./sidebar.module.scss";
 
 const SideBarMenu = () => {
-  const [showSideBarContent, setShowSideBarContent] = useState(true);
+  const [isSidebarOpen, setSidebarOpen] = useState(true);
 
-  const toggleSideBarContent = () => {
-    setShowSideBarContent(!showSideBarContent);
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen);
   };
 
   return (
     <>
       <div className={styles.sideBarMenuButton}>
-        <Button className={"stock"} onClick={toggleSideBarContent}>
-          <FiArrowLeft />
+        <Button className={"stock"} onClick={toggleSidebar}>
+          <FiMoreHorizontal />
         </Button>
       </div>
       <div
-        className={`${styles.SideBarMenuContainer} ${
-          showSideBarContent ? styles.show : ""
-        }`}
+        className={styles.SideBarMenuContainer}
+        style={{
+          transform: isSidebarOpen ? "translateX(0)" : "translateX(-150%)",
+        }}
       >
-        <div className={styles.sideBarMenuButton}>
-        <Button className={"stock"} onClick={toggleSideBarContent}>
-          <FiArrowLeft />
-        </Button>
-      </div>
-        <SideBarNav />
+        <div className={styles.sideBarMenuNav}>
+          <SideBarNav />
+          <div className={styles.sideBarMenuNavButton}>
+            <Button className={"stock"} onClick={toggleSidebar}>
+              <FiX />
+            </Button>
+          </div>
+        </div>
+
         <Search />
-        <Chats />
+        <div className={styles.sideBarMenuChat} onClick={toggleSidebar}>
+          <Chats />
+        </div>
       </div>
     </>
   );

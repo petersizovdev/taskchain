@@ -19,13 +19,14 @@
   left: 0;
   border-radius: 1rem;
   transition: transform 0.3s ease;
-  .sideBarMenuButton{
-    margin-left: auto;
-  }
-}
 
-.sideBarMenuButton {
-  margin: 1rem;
+  .sideBarMenuNav {
+    display: flex;
+    align-items: center;
+    .sideBarMenuNavButton {
+      margin: 0 1rem 0 auto;
+    }
+  }
 }
 
 .show {
