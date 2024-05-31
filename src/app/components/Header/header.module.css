@@ -10,6 +10,11 @@
   z-index: 99;
   border-bottom: 1px solid var(--dark);
 }
+
+.SideBarMenuContainer.show {
+  transform: translateY(0);
+}
+
 .toggleMenu {
   margin: 0 2rem;
   display: none;

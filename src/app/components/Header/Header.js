@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./header.module.css";
 import lm from "@/assets/svg/logomobile.svg";
 import lt from "@/assets/svg/logotext.svg";
@@ -42,13 +42,13 @@ const Header = () => {
               {isSidebarOpen ? <FiX /> : <FiMoreHorizontal />}
             </Button>
 
-            <Link href="#faq">
+            <Link href="/#faq" onClick={() => setSidebarOpen(false)}>
               <Button className="stock">О нас</Button>
             </Link>
-            <Link href="/feedback">
+            <Link href="/feedback" onClick={() => setSidebarOpen(false)}>
               <Button className="stock">Контакты</Button>
             </Link>
-            <Link href="/messenger">
+            <Link href="/messenger" onClick={() => setSidebarOpen(false)}>
               <Button className="accent">Мессенджер</Button>
             </Link>
           </div>
