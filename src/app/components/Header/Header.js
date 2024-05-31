@@ -15,8 +15,12 @@ const Header = () => {
         </Link>
       </div>
       <div className={styles.nav}>
-        <Button className={"stock"}>О нас</Button>
-        <Button className={"stock"}>Контакты</Button>
+        <Link href="#faq">
+          <Button className={"stock"}>О нас</Button>
+        </Link>
+        <Link href="/feedback">
+          <Button className={"stock"}>Контакты</Button>
+        </Link>
         <Link href="/messenger">
           <Button className={"accent"}> Мессенджер</Button>
         </Link>

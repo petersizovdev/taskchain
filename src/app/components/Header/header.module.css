@@ -28,6 +28,9 @@
   width: 4rem;
   height: 4rem;
 }
+.nav a{
+  text-decoration: none;
+}
 @media (max-width: 768px) {
   .nav {
     display: none;

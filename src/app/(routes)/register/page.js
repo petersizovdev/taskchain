@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.scss";
 import { auth, storage, db } from "../../api/firebase";
@@ -12,10 +11,10 @@ import Header from "@/app/components/Header/Header";
 import Card from "@/app/components/Card/Card";
 import { FiImage } from "react-icons/fi";
 import Button from "@/app/components/Button/Button";
-
 const Register = () => {
   const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [consent, setConsent] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -26,16 +25,22 @@ const Register = () => {
     const password = e.target[2].value;
     const file = e.target[3].files[0];
 
+    if (!consent) {
+      setErr(true);
+      setLoading(false);
+      return;
+    }
+
     try {
-      const res = await createUserWithEmailAndPassword(auth, email, password);       //Cоздание аккаунта
+      const res = await createUserWithEmailAndPassword(auth, email, password);
 
       const date = new Date().getTime();
-      const storageRef = ref(storage, `${displayName + date}`);  //имя для аватара
+      const storageRef = ref(storage, `${displayName + date}`);
 
       await uploadBytesResumable(storageRef, file).then(() => {
         getDownloadURL(storageRef).then(async (downloadURL) => {
           try {
-            await updateProfile(res.user, {  //Cоздание профиля
+            await updateProfile(res.user, {
               displayName,
               photoURL: downloadURL,
             });
@@ -46,7 +51,7 @@ const Register = () => {
               photoURL: downloadURL,
             });
 
-            await setDoc(doc(db, "userChats", res.user.uid), {});   //Cоздание списка чатов профиля
+            await setDoc(doc(db, "userChats", res.user.uid), {});
             router.push("/login");
           } catch (err) {
             console.log(err);
@@ -69,7 +74,7 @@ const Register = () => {
           <div className={styles.form}>
             <h1>Регистрация</h1>
             <form onSubmit={handleSubmit}>
-              <input required type="text" placeholder="Отображаемое имя" />
+              <input required type="text" placeholder="Отображаемое имя"/>
               <input required type="email" placeholder="E-mail" />
               <input required type="password" placeholder="Пароль" />
               <input
@@ -79,22 +84,36 @@ const Register = () => {
                 id="file"
               />
               <label htmlFor="file">
-              <FiImage />
-                <h4>
-                  Загрузить аватар
-                </h4>
+                <FiImage />
+                <h4>Загрузить аватар</h4>
               </label>
-              <Button className={"accent"}>Зарегистрироваться</Button>
+              <div className={styles.consent}>
+                <input
+                  required
+                  type="checkbox"
+                  onChange={() => setConsent(!consent)}
+                />
+                <label htmlFor="consent">
+                  <p>Я согласен на обработку персональных данных</p>
+                </label>
+              </div>
+              <Button className={`accent ${consent ? '' : 'disabled'}`} disabled={!consent}>
+                Зарегистрироваться
+              </Button>
               {loading && "Сохраняем данные..."}
               {err && <span>Что-то пошло не так...</span>}
             </form>
             <p>
-              Есть аккаунт? <Link href="/login">Вход</Link>
-            </p>{" "}
+              Уже есть аккаунт?{' '}
+              <Link href="/login" className={styles.reg}>
+                Вход
+              </Link>
+            </p>
           </div>
         </Card>
       </div>
     </div>
   );
 };
+
 export default Register;

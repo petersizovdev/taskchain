@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  height: 100svh;
 }
 .formCard {
   margin: auto;
@@ -13,6 +12,9 @@
     padding: 1rem;
     align-items: center;
     gap: 2rem;
+    .reg {
+      color: var(--green);
+    }
     p {
       z-index: 99;
     }
@@ -22,6 +24,14 @@
       align-items: center;
       gap: 1rem;
       z-index: 99;
+      .consent {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        label {
+          margin: auto 0 auto 1rem;
+        }
+      }
       button {
         width: 12rem;
       }
