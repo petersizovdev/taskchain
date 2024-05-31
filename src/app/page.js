@@ -30,7 +30,7 @@ export default function Home() {
         </div>
         <Image className={styles.mockup} src={Mockup}></Image>
       </div>
-      <div className={styles.about}>
+      <div className={styles.about} id='faq'>
         <Accordion />
       </div>
       <Footer/>

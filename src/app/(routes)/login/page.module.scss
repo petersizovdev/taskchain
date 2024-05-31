@@ -13,6 +13,9 @@
     padding: 1rem;
     align-items: center;
     gap: 2rem;
+    .reg{
+      color: var(--green);
+    }
     p {
       z-index: 99;
     }

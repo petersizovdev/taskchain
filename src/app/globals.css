@@ -18,7 +18,9 @@
   /*border: 1px solid red;*/
 }
 
-input {
+input,
+textarea,
+select {
   border: none;
   outline: none;
   font-size: 1.5rem;
@@ -28,6 +30,7 @@ input {
   transition: border-color 0.3s, box-shadow 0.3s;
   background-color: var(--black);
   color: var(--white);
+  resize: none;
 }
 button {
   outline: none;
@@ -36,6 +39,7 @@ button {
 html {
   font-size: 16px;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {

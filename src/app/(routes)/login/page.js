@@ -37,13 +37,13 @@ const Login = () => {
           <div className={styles.form}>
             <h1>Вход</h1>
             <form onSubmit={handleSubmit}>
-              <input type="email" placeholder="E-mail" />
-              <input type="password" placeholder="Пароль" />
+              <input type="email" placeholder="E-mail" required/>
+              <input type="password" placeholder="Пароль" required/>
               <Button className={"accent"}>Войти</Button>
               {err && <span>Что-то пошло не так...</span>}
             </form>
             <p>
-              Нет аккаунта? <Link href="/register">Регистрация</Link>
+              Нет аккаунта? {" "}<Link href="/register" className={styles.reg}>Регистрация</Link>
             </p>
           </div>
         </Card>
