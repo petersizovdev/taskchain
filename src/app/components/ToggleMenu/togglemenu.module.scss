@@ -1,3 +1,32 @@
+.SideBarMenuContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: absolute;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: var(--blackglass);
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 1rem;
+  transition: transform 0.3s ease;
+
+  .sideBarMenuNav {
+    display: flex;
+    align-items: center;
+    .sideBarMenuNavButton {
+      margin: 0 1rem 0 auto;
+    }
+  }
+}
+
+.show {
+  transform: translateX(0); // Показываем SideBarMenuContainer
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -9,15 +38,6 @@
   position: fixed;
   z-index: 99;
   border-bottom: 1px solid var(--dark);
-}
-
-.SideBarMenuContainer.show {
-  transform: translateY(0);
-}
-
-.toggleMenu {
-  margin: 0 2rem;
-  display: none;
 }
 .logoText {
   width: 8rem;
@@ -40,37 +60,8 @@
 .nav a {
   text-decoration: none;
 }
-.sideBarMenuButton {
-  display: flex;
-  display: none;
-  margin-right: 2rem;
-  align-items: end;
-}
-
-.SideBarMenuContainer {
-  display: none;
-}
-.sideBarMenuNav {
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-  gap: 1rem;
-  margin: 1rem 2rem;
-}
-
 @media (max-width: 768px) {
   .nav {
     display: none;
-  }
-  .toggleMenu {
-    display: block;
-  }
-  .SideBarMenuContainer {
-    display: block;
-  }
-  .logoText {
-    width: 8rem;
-    height: 4rem;
-    margin-bottom: auto;
   }
 }
