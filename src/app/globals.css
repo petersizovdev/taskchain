@@ -35,6 +35,12 @@ select {
 button {
   outline: none;
 }
+button:hover {
+  cursor: pointer;
+}
+input:hover {
+  cursor: text;
+}
 
 html {
   font-size: 16px;

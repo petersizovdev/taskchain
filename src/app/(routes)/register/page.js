@@ -11,6 +11,7 @@ import Header from "@/app/components/Header/Header";
 import Card from "@/app/components/Card/Card";
 import { FiImage } from "react-icons/fi";
 import Button from "@/app/components/Button/Button";
+import Footer from '@/app/components/Footer/Footer';
 const Register = () => {
   const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -112,6 +113,7 @@ const Register = () => {
           </div>
         </Card>
       </div>
+      <Footer />
     </div>
   );
 };
