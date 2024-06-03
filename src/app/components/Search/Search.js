@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 import React, { useState, useEffect, useContext } from 'react';
 import styles from './search.module.scss';
