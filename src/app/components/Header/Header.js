@@ -24,7 +24,7 @@ const Header = () => {
         </Link>
       </div>
       <div className={`${styles.nav} ${isSidebarOpen ? styles.hide : ""}`}>
-        <Link href="#faq">
+        <Link href="/#faq">
           <Button className="stock">О нас</Button>
         </Link>
         <Link href="/feedback">

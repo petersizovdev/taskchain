@@ -11,7 +11,8 @@ import blub2 from "@/assets/svg/bbblurry1.svg";
 import blub3 from "@/assets/svg/bbblurry2.svg";
 import Button from "@/app/components/Button/Button";
 import Link from "next/link";
-export default function Home() {
+
+export default function Feedback() {
   const [consent, setConsent] = useState(false);
   const [isSent, setIsSent] = useState(null);
   const form = useRef();
