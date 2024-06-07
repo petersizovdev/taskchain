@@ -20,15 +20,12 @@
   background-color: var(--black);
   color: var(--white);
 }
-.stock {
-
-  background-color: var(--black);
-  color: #fff;
-  transform: scale(1.05);
-  transition: all 0.1s;
-}
-
 .outlined:hover {
   border-color: var(--white);
   box-shadow: 0 0 10px 5px hsla(0, 0%, 100%, 0.25);
+}
+
+.stock {
+  background-color: var(--black);
+  color: var(--white);
 }

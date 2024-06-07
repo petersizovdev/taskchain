@@ -1,16 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-
 import styles from "./chats.module.scss";
 import { doc, onSnapshot } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
 import { db } from "@/app/api/firebase";
+import { FiMinus, FiCheck, FiX } from "react-icons/fi";
+import Button from "../Button/Button";
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
-
+  const [delet, setDelet] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext) || {};
 
@@ -19,18 +20,22 @@ const Chats = () => {
       const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
         setChats(doc.data());
       });
-
       return () => {
         unsub();
       };
     };
-
     currentUser.uid && getChats();
   }, [currentUser.uid]);
 
   const handleSelect = (u) => {
     dispatch({ type: "CHANGE_USER", payload: u });
   };
+
+  const deleteChat = async (chatId) => {
+    const chatRef = doc(db, "userChats", currentUser.uid, chatId);
+    await deleteDoc(chatRef);
+  };
+
   return (
     <div className={styles.chats}>
       {Object.entries(chats)
@@ -48,6 +53,36 @@ const Chats = () => {
             <p>
               {chat[1].lastMessage?.text.slice(0, 16)}
               {chat[1].lastMessage?.text.length > 16 ? "..." : ""}
+{/*
+              {delet ? (
+                <div >
+                  <Button
+                    className="stock"
+                    onClick={() => {
+                      deleteChat();
+                    }}
+                  >
+                    <FiCheck />
+                  </Button>
+                  <Button
+                    className="stock"
+                    onClick={() => {
+                      setDelet(false);
+                    }}
+                  >
+                    <FiX />
+                  </Button>
+                </div>
+              ) : (
+                <Button
+                  className="stock"
+                  onClick={() => {
+                    setDelet(true);
+                  }}
+                >
+                  <FiMinus />
+                </Button>
+              )}*/}
             </p>
           </div>
         ))}

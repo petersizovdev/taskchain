@@ -17,11 +17,11 @@ const SideBarNav = () => {
         <h3>{currentUser.displayName}</h3>
       </div>
       <div className={styles.navUser}>
-        <Button className={"stock"}>
+        <Button className={"outlined"}>
           <FiSettings />
         </Button>
 
-        <Button className={"stock"} onClick={() => signOut(auth)}>
+        <Button className={"outlined"} onClick={() => signOut(auth)}>
           <FiLogOut />
         </Button>
       </div>

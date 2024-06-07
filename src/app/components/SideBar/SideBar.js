@@ -1,8 +1,6 @@
-import Button from "../Button/Button";
 import Chats from "../Chats/Chats";
 import Search from "../Search/Search";
 import SideBarNav from "../SideBarNav/SideBarNav";
-import SideBarMenu from "./SideBarMenu";
 import styles from "./sidebar.module.scss";
 
 const SideBar = () => {

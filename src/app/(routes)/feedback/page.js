@@ -94,7 +94,7 @@ export default function Home() {
                 onChange={() => setConsent(!consent)}
               />
               <label htmlFor="consent">
-                <p>Я согласен на обработку персональных данных</p>
+                <p>Я согласен на обработку <a href='/policy.pdf'>персональных данных</a></p>
               </label>
             </div>
 
