@@ -6,6 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { auth } from "@/app/api/firebase";
 import Button from "../Button/Button";
 import { FiLogOut, FiSettings } from "react-icons/fi";
+import Settings from '../Settings/Settings';
 
 const SideBarNav = () => {
   const { currentUser } = useContext(AuthContext);
@@ -17,10 +18,7 @@ const SideBarNav = () => {
         <h3>{currentUser.displayName}</h3>
       </div>
       <div className={styles.navUser}>
-        <Button className={"outlined"}>
-          <FiSettings />
-        </Button>
-
+        <Settings/>
         <Button className={"outlined"} onClick={() => signOut(auth)}>
           <FiLogOut />
         </Button>
