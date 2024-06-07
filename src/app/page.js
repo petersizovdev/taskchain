@@ -28,7 +28,7 @@ export default function Home() {
           </h2>
           <Image className={styles.blub2} priority src={blub} alt="" ></Image>
         </div>
-        <Image className={styles.mockup} src={Mockup}></Image>
+        <Image unoptimized="false" className={styles.mockup} src={Mockup}></Image>
       </div>
       <div className={styles.about} id='faq'>
         <Accordion />

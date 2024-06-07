@@ -4,14 +4,12 @@ import styles from "./page.module.scss";
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../api/firebase";
-
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Header from "@/app/components/Header/Header";
 import Footer from "@/app/components/Footer/Footer";
 import Card from "@/app/components/Card/Card";
 import Button from "@/app/components/Button/Button";
-import DocSaver from "@/app/components/DocSaver/DocSaver";
 
 const Login = () => {
   const [err, setErr] = useState(false);

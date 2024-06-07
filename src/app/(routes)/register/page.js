@@ -17,7 +17,6 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const [consent, setConsent] = useState(false);
   const router = useRouter();
-
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();

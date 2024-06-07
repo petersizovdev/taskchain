@@ -41,7 +41,6 @@ const Header = () => {
             <Button className="stock" onClick={toggleSidebar}>
               {isSidebarOpen ? <FiX /> : <FiMoreHorizontal />}
             </Button>
-
             <Link href="/#faq" onClick={() => setSidebarOpen(false)}>
               <Button className="stock">О нас</Button>
             </Link>
