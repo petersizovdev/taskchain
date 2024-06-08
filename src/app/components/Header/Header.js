@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import styles from "./header.module.css";
+import styles from "./header.module.scss";
 import lm from "@/assets/svg/logomobile.svg";
 import lt from "@/assets/svg/logotext.svg";
 import Image from "next/image";
@@ -24,7 +24,7 @@ const Header = () => {
         </Link>
       </div>
       <div className={`${styles.nav} ${isSidebarOpen ? styles.hide : ""}`}>
-        <Link href="#faq">
+        <Link href="/#faq">
           <Button className="stock">О нас</Button>
         </Link>
         <Link href="/feedback">

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import styles from "./sidebarnav.module.scss";
 import React, { useContext } from "react";
@@ -5,7 +6,8 @@ import { signOut } from "firebase/auth";
 import { AuthContext } from "../../context/AuthContext";
 import { auth } from "@/app/api/firebase";
 import Button from "../Button/Button";
-import { FiLogOut, FiSettings } from "react-icons/fi";
+import { FiLogOut } from "react-icons/fi";
+import Settings from '../Settings/Settings';
 
 const SideBarNav = () => {
   const { currentUser } = useContext(AuthContext);
@@ -17,11 +19,8 @@ const SideBarNav = () => {
         <h3>{currentUser.displayName}</h3>
       </div>
       <div className={styles.navUser}>
-        <Button className={"stock"}>
-          <FiSettings />
-        </Button>
-
-        <Button className={"stock"} onClick={() => signOut(auth)}>
+        <Settings/>
+        <Button className={"outlined"} onClick={() => signOut(auth)}>
           <FiLogOut />
         </Button>
       </div>

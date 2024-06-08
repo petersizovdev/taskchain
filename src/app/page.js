@@ -3,7 +3,6 @@
 import Header from "./components/Header/Header";
 import Welcome from "./components/Welcome/Welcome";
 import styles from "./page.module.scss";
-import Link from "next/link";
 import Mockup from "@/assets/img/mockup.png";
 import Yoga from "@/assets/img/yoga.png";
 import Image from "next/image";

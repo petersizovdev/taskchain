@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import SideBar from "@/app/components/SideBar/SideBar";
 import Chat from "@/app/components/Chat/Chat";
 
-export default function Home() {
+export default function Messenger() {
   const { currentUser } = useContext(AuthContext);
   const router = useRouter();
   const ProtectedRoute = ({ children }) => {
