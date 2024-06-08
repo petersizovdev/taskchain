@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import styles from "./sidebarnav.module.scss";
 import React, { useContext } from "react";

@@ -1,13 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import styles from "./chats.module.scss";
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot, deleteDoc, setDoc, deleteField } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
 import { db } from "@/app/api/firebase";
 import { FiMinus, FiCheck, FiX } from "react-icons/fi";
-import Button from "../Button/Button";
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
@@ -32,9 +31,11 @@ const Chats = () => {
   };
 
   const deleteChat = async (chatId) => {
-    const chatRef = doc(db, "userChats", currentUser.uid, chatId);
-    await deleteDoc(chatRef);
+    const userChatsRef = doc(db, "userChats", currentUser.uid);
+    await setDoc(userChatsRef, { [chatId]: deleteField() }, { merge: true });
   };
+  
+  
 
   return (
     <div className={styles.chats}>
@@ -50,40 +51,38 @@ const Chats = () => {
               <img src={chat[1].userInfo.photoURL} alt="" />
               <span>{chat[1].userInfo.displayName}</span>
             </div>
-            <p>
-              {chat[1].lastMessage?.text.slice(0, 16)}
-              {chat[1].lastMessage?.text.length > 16 ? "..." : ""}
-{/*
+            <p className={styles.msgPrev}>
+              {chat[1].lastMessage?.text.slice(0, 8)}
+              {chat[1].lastMessage?.text.length > 8 ? "..." : ""}
+            </p>{" "}
+            <div className={styles.delet}>
               {delet ? (
-                <div >
-                  <Button
-                    className="stock"
+                <div className={styles.deletAsk}>
+                  <div
                     onClick={() => {
-                      deleteChat();
+                      deleteChat(chat[0]);
                     }}
                   >
                     <FiCheck />
-                  </Button>
-                  <Button
-                    className="stock"
+                  </div>
+                  <div
                     onClick={() => {
                       setDelet(false);
                     }}
                   >
                     <FiX />
-                  </Button>
+                  </div>
                 </div>
               ) : (
-                <Button
-                  className="stock"
+                <div
                   onClick={() => {
                     setDelet(true);
                   }}
                 >
                   <FiMinus />
-                </Button>
-              )}*/}
-            </p>
+                </div>
+              )}
+            </div>
           </div>
         ))}
     </div>
