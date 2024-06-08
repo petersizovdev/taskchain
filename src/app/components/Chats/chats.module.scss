@@ -5,6 +5,7 @@
   gap: 0.5rem;
   overflow: scroll;
   overflow-x: hidden;
+
 }
 .chats:hover {
   cursor: default;
@@ -34,7 +35,6 @@
     display: flex;
     opacity: 0.5;
     gap: 0.5rem;
-
   }
 }
 .userChat:hover .msgPrev {

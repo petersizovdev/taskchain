@@ -1,17 +1,20 @@
+/* eslint-disable @next/next/no-img-element */
 import { useContext, useEffect, useState } from "react";
 import Card from "../Card/Card";
 import styles from "./settings.module.scss";
 import Button from "../Button/Button";
-import Link from "next/link";
+import { AuthContext } from "../../context/AuthContext";
+import { auth, storage, db } from "../../api/firebase";
+import { updateProfile } from "firebase/auth";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { doc, setDoc } from "firebase/firestore";
 import { FiSettings } from "react-icons/fi";
-import { TbX } from "react-icons/tb";
-
-import { ChatContext } from "@/app/context/ChatContext";
-import { db } from "@/app/api/firebase";
+import { FiEdit3, FiX } from "react-icons/fi";
+import Chats from "../Chats/Chats";
 
 function Settings() {
-  const [showModal, setShowModal] = useState(false); // Состояние для модального окна
-  const { data } = useContext(ChatContext);
+  const { currentUser } = useContext(AuthContext);
+  const [showModal, setShowModal] = useState(false);
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -32,9 +35,26 @@ function Settings() {
             >
               <h3 className={styles.modalH}>
                 Настройки
-                <TbX className={styles.closeModal} onClick={handleCloseModal} />
+                <FiX className={styles.closeModal} onClick={handleCloseModal} />
               </h3>
-
+              <div className={styles.navUserInfo}>
+                <input
+                  required
+                  style={{ display: "none" }}
+                  type="file"
+                  id="file"
+                />
+                <label htmlFor="file" className={styles.editImg}>
+                  <img src={currentUser.photoURL} alt="" />
+                  <div className={styles.editImgHover}>
+                    <FiEdit3 />
+                  </div>
+                </label>
+                <input
+                  type="text"
+                  placeholder={currentUser.displayName}
+                ></input>
+              </div>
               <Button>Сохранить</Button>
             </div>
           </Card>

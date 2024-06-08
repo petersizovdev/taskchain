@@ -6,7 +6,7 @@ import { signOut } from "firebase/auth";
 import { AuthContext } from "../../context/AuthContext";
 import { auth } from "@/app/api/firebase";
 import Button from "../Button/Button";
-import { FiLogOut, FiSettings } from "react-icons/fi";
+import { FiLogOut } from "react-icons/fi";
 import Settings from '../Settings/Settings';
 
 const SideBarNav = () => {

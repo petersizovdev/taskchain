@@ -6,11 +6,11 @@ import styles from "./sidebar.module.scss";
 const SideBar = () => {
   return (
     <div className={styles.sideBar}>
-      <div className={styles.sideBarContent}>
+
         <SideBarNav />
         <Search />
         <Chats />
-      </div>
+
     </div>
   );
 };

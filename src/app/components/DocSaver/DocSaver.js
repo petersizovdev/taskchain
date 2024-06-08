@@ -3,7 +3,8 @@ import Card from "../Card/Card";
 import styles from "./docsaver.module.scss";
 import Button from "../Button/Button";
 import Link from "next/link";
-import { TbCubePlus, TbX, TbFile } from "react-icons/tb";
+import { TbCubePlus, TbFile } from "react-icons/tb";
+import {  FiX } from "react-icons/fi";
 import { doc, onSnapshot, setDoc } from "firebase/firestore";
 import { ChatContext } from "@/app/context/ChatContext";
 import { db } from "@/app/api/firebase";
@@ -101,7 +102,7 @@ function DocSaver() {
             >
               <h3 className={styles.modalH}>
                 Загрузите документ
-                <TbX className={styles.closeModal} onClick={handleCloseModal} />
+                <FiX className={styles.closeModal} onClick={handleCloseModal} />
               </h3>
               {fileUrl && (
                 <span>
