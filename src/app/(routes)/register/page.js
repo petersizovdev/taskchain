@@ -85,12 +85,12 @@ const Register = () => {
             <input
                 required
                 type="text"
-                placeholder="Отображаемое имя"
+                placeholder="Никнейм на английском"
                 value={displayName}
                 onChange={handleInputChange}
               />
               <input required type="email" placeholder="E-mail" />
-              <input required type="password" placeholder="Пароль" />
+              <input required type="password" placeholder="Пароль от 6 знаков" />
               <input
                 required
                 style={{ display: "none" }}
