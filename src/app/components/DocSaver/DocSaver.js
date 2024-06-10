@@ -4,7 +4,7 @@ import styles from "./docsaver.module.scss";
 import Button from "../Button/Button";
 import Link from "next/link";
 import { TbCubePlus, TbFile } from "react-icons/tb";
-import {  FiX } from "react-icons/fi";
+import { FiX } from "react-icons/fi";
 import { doc, onSnapshot, setDoc } from "firebase/firestore";
 import { ChatContext } from "@/app/context/ChatContext";
 import { db } from "@/app/api/firebase";
@@ -54,7 +54,11 @@ function DocSaver() {
 
       // Сохраняем новую ссылку в базу данных
       const docRef = doc(db, "chats", data.chatId);
-      await setDoc(docRef, { IPFSlinks: [...IPFSlinks, newFileUrl] }, { merge: true });
+      await setDoc(
+        docRef,
+        { IPFSlinks: [...IPFSlinks, newFileUrl] },
+        { merge: true }
+      );
     } catch (error) {
       console.error(error);
     }
@@ -64,7 +68,7 @@ function DocSaver() {
 
   useEffect(() => {
     const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
-      doc.exists() && setIPFSLinks(doc.data().IPFSlinks || []); // Получаем ссылки из базы
+      doc.exists() && setIPFSLinks(doc.data().IPFSlinks || []); // Получаем ссылки из базы двнных
     });
 
     return () => {
@@ -85,7 +89,7 @@ function DocSaver() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {IPFSlinks[IPFSlinks.length - 1].slice(-46)}
+            {IPFSlinks[IPFSlinks.length - 1].slice(-16)}
           </Link>
         ) : (
           <span onClick={() => setShowModal(true)}> Сохранить договор</span>
