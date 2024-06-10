@@ -88,7 +88,6 @@ const Chats = () => {
             </div>
           </div>
         ))}
- 
     </div>
   );
 };
