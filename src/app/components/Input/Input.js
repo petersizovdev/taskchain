@@ -26,13 +26,16 @@ const Input = () => {
     if (file) {
       const storageRef = ref(storage, uuid());
       const uploadTask = uploadBytesResumable(storageRef, file);
+
       uploadTask.on(
+        "state_changed",
+        null,
         (error) => {
-          console.error("Error uploading file:", error);
+          console.error("Ошибка загрузки файла:", error);
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            console.log("Download URL:", downloadURL);
+            console.log("URL для загрузки:", downloadURL);
             await updateDoc(doc(db, "chats", data.chatId), {
               messages: arrayUnion({
                 id: uuid(),
@@ -59,7 +62,7 @@ const Input = () => {
 
     await updateDoc(doc(db, "userChats", currentUser.uid), {
       [data.chatId + ".lastMessage"]: {
-        text: file ? fileName : text, // Используем имя файла, если отправлен файл
+        text: file ? fileName : text,
       },
       [data.chatId + ".date"]: serverTimestamp(),
     });
@@ -70,9 +73,9 @@ const Input = () => {
   };
 
   const onFileChange = (e) => {
-    const file = e.target.files[0];
-    setFile(file);
-    setFileName(file.name);
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+    setFileName(selectedFile.name);
   };
 
   const handleKeyDown = (e) => {
@@ -80,6 +83,7 @@ const Input = () => {
       handleSend();
     }
   };
+
   return (
     <div className={styles.input}>
       <input

@@ -14,7 +14,7 @@ import Button from "@/app/components/Button/Button";
 import Footer from "@/app/components/Footer/Footer";
 
 const Register = () => {
-  const [displayName, setDisplayName] = useState('');
+  const [displayName, setDisplayName] = useState("");
   const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
   const [consent, setConsent] = useState(false);
@@ -22,9 +22,9 @@ const Register = () => {
 
   const handleInputChange = (e) => {
     const inputText = e.target.value
-      .toLowerCase()  // Преобразование в нижний регистр
-      .replace(/\s/g, '_')  // Замена пробелов на знак нижнего подчеркивания
-      .replace(/[^a-zA-Z0-9_.]/g, ''); // Оставляем только буквы, цифры и точку
+      .toLowerCase() // Преобразование в нижний регистр
+      .replace(/\s/g, "_") // Замена пробелов на знак нижнего подчеркивания
+      .replace(/[^a-zA-Z0-9_.]/g, ""); // Оставляем только буквы, цифры и точку
     setDisplayName(inputText);
   };
 
@@ -34,7 +34,8 @@ const Register = () => {
     const displayName = e.target[0].value;
     const email = e.target[1].value;
     const password = e.target[2].value;
-    const file = e.target[3].files[0];
+    const repeatPassword = e.target[3].value; // Добавлено чтение введенного повторного пароля
+    const file = e.target[4].files[0]; // Изменен индекс для файла
 
     if (!consent) {
       setErr(true);
@@ -42,10 +43,17 @@ const Register = () => {
       return;
     }
 
+    if (password !== repeatPassword) {
+      // Проверка совпадения пароля и повторного пароля
+      alert("Пароли не совпадают"); // Вывод ошибки о несовпадении паролей
+      setLoading(false);
+      return;
+    }
+
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       const date = new Date().getTime();
-      const storageRef = ref(storage, `${displayName + date}`);
+      const storageRef = ref(storage, `${displayName + date}`); // Исправлено использование кавычек
       await uploadBytesResumable(storageRef, file).then(() => {
         getDownloadURL(storageRef).then(async (downloadURL) => {
           try {
@@ -73,7 +81,6 @@ const Register = () => {
       setLoading(false);
     }
   };
-
   return (
     <div className={styles.formContainer}>
       <Header />
@@ -82,7 +89,7 @@ const Register = () => {
           <div className={styles.form}>
             <h1>Регистрация</h1>
             <form onSubmit={handleSubmit}>
-            <input
+              <input
                 required
                 type="text"
                 placeholder="Никнейм на английском"
@@ -90,7 +97,18 @@ const Register = () => {
                 onChange={handleInputChange}
               />
               <input required type="email" placeholder="E-mail" />
-              <input required type="password" placeholder="Пароль от 6 знаков" />
+              <input
+                required
+                type="password"
+                placeholder="Пароль от 6 знаков"
+              />
+              <input
+                type="password"
+                placeholder="Повторите пароль"
+                name="repeatPassword"
+                required
+              />
+
               <input
                 required
                 style={{ display: "none" }}
