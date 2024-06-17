@@ -150,7 +150,7 @@ const Register = () => {
           </div>
         </Card>
       </div>
-      <Footer />
+      {/*<Footer />*/}
     </div>
   );
 };

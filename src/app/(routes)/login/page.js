@@ -47,7 +47,7 @@ const Login = () => {
         </Card>
       </div>
 
-      <Footer />
+      {/*<Footer />*/}
     </div>
   );
 };
